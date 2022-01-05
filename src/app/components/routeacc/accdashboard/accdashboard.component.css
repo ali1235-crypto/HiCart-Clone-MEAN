@@ -1,0 +1,54 @@
+.parent {
+  display: flex;
+  justify-content: space-between;
+}
+.titleAcc {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.accountInfo {
+  margin-bottom: 50px;
+}
+.accountInfo h2 {
+  margin-bottom: 40px;
+}
+.child {
+  width: 466px;
+  padding: 26px 28px 20px;
+  border-top: 2px solid #3c9ad5;
+  border-left: 1px solid #d7c9c9;
+  border-right: 1px solid #d7c9c9;
+  border-bottom: 1px solid #d7c9c9;
+}
+.child1 {
+  height: 235px;
+}
+.child2 {
+  height: 194px;
+}
+.titleAcc h4 {
+  margin: 0;
+  font-size: 23px;
+  margin-left: 18px;
+  color: #3c9ad5;
+}
+.titleAcc fa-icon {
+  font-size: 29px;
+  color: #3c9ad5;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  text-align: center;
+  padding-top: 14px;
+  border: 2px solid #3c9ad5;
+}
+.child a {
+  margin-bottom: 15px;
+  display: block;
+  text-decoration: underline;
+  color: black;
+}
+.child span {
+  color: #9b9595;
+}

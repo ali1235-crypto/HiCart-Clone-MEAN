@@ -1,0 +1,96 @@
+<h2 style="padding: 8px;font-size: 28px;text-decoration: underline;">User Info{{v.price.value}}</h2>
+<div class="info">
+  <form [formGroup]="v.form">
+    <div >
+      <span>Name : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="title"/>
+    </div>
+    <div >
+      <span>Desc : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="desc"/>
+    </div>
+    <div >
+      <span>Price : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="price"/>
+    </div>
+    <div >
+      <span>Img : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="img" />
+    </div>
+    <div >
+      <span>Imgs : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="imgs" />
+    </div>
+    <div >
+      <span>Size : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="size"/>
+    </div>
+    <div >
+      <span>SoldBy : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="soldby"/>
+    </div>
+    <div >
+      <span>Category : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="category"/>
+    </div>
+    <div >
+      <span>Availability : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="availability"/>
+    </div>
+    <div >
+      <span>Capacity : </span>
+      <input [ngClass]="{'a': !readonly}"   readonly formControlName="ca" [readonly]="readonly" formControlName="capacity"/>
+    </div>
+    <div >
+      <span>Type : </span>
+      <input [ngClass]="{'a': !readonly}"   readonly formControlName="ua" [readonly]="readonly" formControlName="type"/>
+    </div>
+    <div >
+      <span>ProductCode : </span>
+      <input [ngClass]="{'a': !readonly}"   readonly [readonly]="readonly" formControlName="productcode"/>
+    </div>
+    <div >
+      <span>Brand : </span>
+      <input [ngClass]="{'a': !readonly}"   readonly [readonly]="readonly" formControlName="brand"/>
+    </div>
+    <div >
+      <span>Color : </span>
+      <input [ngClass]="{'a': !readonly}"   readonly [readonly]="readonly" formControlName="color"/>
+    </div>
+    <div >
+      <span>Dimensions : </span>
+      <input  [ngClass]="{'a': !readonly}"  readonly [readonly]="readonly" formControlName="dimensions"/>
+    </div>
+    <div >
+      <span>Features : </span>
+      <input  [ngClass]="{'a': !readonly}"  readonly [readonly]="readonly" formControlName="features"/>
+    </div>
+    <div >
+      <button (click)="readonly=true;AddEdit()">{{uped}}</button>
+    </div>
+  </form>
+
+</div>
+<div class="child">
+  <fa-icon [icon]="faPlus" (click)="readonly=false;uped='Add';clearInput()" ></fa-icon>
+  <div class="columns" style="height: 48px;">
+    <div style="width: 260px;">ID</div>
+    <div style="width: 184px;">Name</div>
+    <div style="width: 184px;">Image</div>
+    <div style="width: 117px;">Select</div>
+    <div style="width: 117px;">Edit</div>
+    <div style="width: 84px;">Delete</div>
+  </div>
+  <div class="columns" *ngFor="let pr of productss">
+    <div style="width: 260px;color: #3c9ad5;;">{{pr._id}}</div>
+    <div style="width: 184px;color: #3c9ad5;padding: 7px;">{{pr.title}}</div>
+    <div style="width: 184px;"><img style="height: 110px;
+      width: 130px;
+      padding: 5px;border: 1px solid #3c9ad5;" [src]="pr.img"/></div>
+    <div style="width: 117px;"><button (click)="getProductId(pr._id)">Select</button></div>
+    <div style="width: 117px;" (click)="readonly=false;uped='Edit'">Edit</div>
+    <div style="width: 84px;" (click)="deleteProduct(pr._id)">Delete</div>
+  </div>
+</div>
+
+

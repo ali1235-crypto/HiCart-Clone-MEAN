@@ -1,0 +1,96 @@
+<section>
+  <div class="path">
+    <ul><li><fa-icon [icon]="faHouseDamage"></fa-icon></li><li><a [routerLink]="" style="color: #3c9ad5;">Electronics</a></li><li>Eufy, Solo Out doorCam C24 2K</li></ul>
+  </div>
+  <div class="product-info">
+    <div class="product-imgs">
+      <div class="list-imgs">
+        <ul><li><img class="hover" /></li><li><img class="hover" /></li><li><img class="hover" /></li></ul>
+      </div>
+      <div id="img">
+        <figure>
+          <img  />
+          <img  />
+        </figure>
+      </div>
+    </div>
+    <div class="product-principal-info">
+      <h1>Eufy, Solo Out doorCam C24 2K</h1>
+      <h1 style="color: #8b8b8b;">LBP 3,000,000</h1>
+      <div class="btns-buy-addcart">
+        <div class="input-number">
+          <div class="faicon"><fa-icon [icon]="faPlus" (click)="imageSlider()"></fa-icon></div>
+          <input type="number" style="width: 40px;height: 30px;"/>
+          <div class="faicon"><fa-icon [icon]="faMinus"></fa-icon></div>
+        </div>
+        <button style="width: 163px;background-color: #3c9ad5;">ADD TO CART</button>
+        <button style="width: 173px;background-color: #20b82e;">BUY NOW</button>
+      </div>
+      <div class="product-stoke-others">
+        <div>
+          <span class="title-span">Delivery Time:</span>
+          <span class=""><a routerLink="" style="color: red;">Expected delivery is within five working days</a></span>
+        </div>
+        <div>
+          <span class="title-span">Availability:</span>
+          <span class="" style="color: #20B82E;">In stoke</span>
+        </div>
+        <div>
+          <span class="title-span">Sold By:</span>
+          <span class=""><a routerLink="">beirutco</a></span>
+        </div>
+        <div class="stars">
+          <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
+        </div>
+      </div>
+      <div class="icons">
+        <fa-icon [icon]="faHeart"></fa-icon>
+        <fa-icon [icon]="faBalanceScale"></fa-icon>
+      </div>
+    </div>
+    <div class="product-other-info">
+      <div class="other-info-title">
+        <ul>
+          <li><h2 (click)="deleteTableData();desc=true;review=false">DESCRIPTION</h2></li>
+          <li><h2 (click)="getTableDate();desc=false;review=false">SPECIFICATIONS</h2></li>
+          <li><h2 (click)="deleteTableData();review=true;desc=false">REVIEWS</h2></li>
+        </ul>
+      </div>
+      <div class="productother-info">
+        <h2 style="color: #3c9ad5;">{{getTitle()}}</h2>
+        <p *ngIf="desc">Canon PowerShot ELPH 180  20.0 Megapixels  8X Optical Zoom 3 Inch Screen 720P Video Silver</p>
+        <table  id="table-spec" >
+
+        </table>
+        <p *ngIf="review" style="color: #333;
+        font-weight: bold;
+        font-size: 16px;">You can only add a review if you purchased this product</p>
+      </div>
+    </div>
+    <div class="also">
+      <div class="also-title">
+        <h1>YOU MIGHT BE ALSO INTERESTED IN</h1>
+      </div>
+      <div class="products">
+        <div class="product-item" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+          <div class="product-image">
+            <img src="" />
+          </div>
+          <div class="ratestar" style="text-align: center;">
+            <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
+          </div>
+          <h3>Lenovo,HD300 Bluetooth Wireless</h3>
+          <div class="product-price" style="color: #3c9ad5;text-align: center;">
+            <p style="margin-bottom:4px;">238,000 LBP</p>
+            <p style="text-decoration: line-through;color: #a59c9c;">400,000 LBP</p>
+          </div>
+          <div class="product-icons">
+            <fa-icon [icon]="faShoppingCart"></fa-icon>
+            <fa-icon [icon]="faHeart"></fa-icon>
+            <fa-icon [icon]="faBalanceScale"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

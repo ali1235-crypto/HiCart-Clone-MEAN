@@ -1,0 +1,34 @@
+section {
+  padding: 20px 33px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fbfbfb;
+}
+section .myAccount {
+  border: 1px solid #d7c9c9;
+  width: 272px;
+  height: 432px;
+}
+section .myAccount ul {
+  list-style: none;
+}
+section .myAccount ul li {
+  padding: 9px 12px;
+  color: #9b9595;
+  font-size: 16px;
+}
+section .myAccount ul li:not(:first-child) {
+  cursor: pointer;
+}
+section .myAccount ul li:hover,
+.active {
+  color: black;
+  background-color: #f4f4f4;
+}
+section .myAccountInfo {
+  border: 1px solid red;
+  width: 950px;
+}
+.accountInfo {
+  margin-bottom: 60px;
+}

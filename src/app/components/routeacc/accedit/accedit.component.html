@@ -1,0 +1,48 @@
+<h1 style="font-weight: bold;margin-bottom: 72px;color: #333;">EDIT ACCOUNT INFORMATION
+</h1>
+<form>
+  <div class="child">
+    <h3>ACCOUNT INFORMATION</h3>
+      <div>
+        <p>FIRSTNAME<span style="color:red">*</span></p>
+        <input type="text" />
+      </div>
+      <div>
+        <p>LASTNAME<span style="color:red">*</span></p>
+        <input type="text" />
+      </div>
+      <div>
+        <p>EMAIL ADDRESS<span style="color:red">*</span></p>
+        <input type="text" />
+      </div>
+      <div>
+        <p>DATEOFBIRTH<span style="color:red">*</span></p>
+        <input type="text" />
+      </div>
+      <div style="display: flex;
+      align-items: center;">
+        <fa-icon [icon]="faCheck" *ngIf="openpass"  (click)="openpass=!openpass"></fa-icon>
+        <input type="checkbox" id="check" (click)="uncheck()"/>
+        <label  for="check">Change Password</label>
+      </div>
+  </div>
+  <div class="child" *ngIf="openpass">
+    <h3>CHANGE PASSWORD</h3>
+      <div>
+        <p>CURRNET PASSWORD<span style="color:red">*</span></p>
+        <input type="text" />
+      </div>
+      <div>
+        <p>NEW PASSWORD<span style="color:red">*</span></p>
+        <input type="text" />
+      </div>
+      <div>
+        <p>CONFIRM NEW PASSWORD<span style="color:red">*</span></p>
+        <input type="text" />
+      </div>
+  </div>
+  <div class="save-back">
+    <a href="">Back</a>
+    <button>Save</button>
+  </div>
+</form>

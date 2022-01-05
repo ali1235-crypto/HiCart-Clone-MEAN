@@ -1,0 +1,88 @@
+section.login {
+  font-size: 14px;
+}
+section.login .opa {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+section.login .opa .divvlogin {
+  border: 2px solid black;
+  display: flex;
+  width: 55%;
+  height: 274px;
+  background-color: white;
+  padding: 13px;
+  position: relative;
+  top: 67px;
+  border-radius: 10px;
+}
+section.login .divlogin {
+  border-right: 1px dotted black;
+  width: 67%;
+  padding: 7px 29px 7px 7px;
+  margin-right: 19px;
+}
+section.login .or {
+  border: 1px solid gray;
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 9px 8px;
+  font-size: 15px;
+  color: gray;
+  position: absolute;
+  left: 470px;
+  top: 37%;
+}
+section.login .siginwith {
+  width: 30%;
+  padding: 7px;
+}
+section.login .logininfo {
+  margin-bottom: 14px;
+  height: 32px;
+}
+section.login .logininfo .option {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+}
+section.login .divlogin .signup {
+  padding: 6px;
+  border: 1px solid #d1cccc;
+  background-color: #efe9e9;
+  border-radius: 4px;
+}
+.btns {
+  display: flex;
+  flex-direction: column;
+}
+.btns button {
+  margin-bottom: 8px;
+  width: 143px;
+  height: 25px;
+  border-radius: 7px;
+  border: 0;
+  color: white;
+}
+.close {
+  border: 5px solid white;
+  background-color: black;
+  color: white;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 52px;
+  left: 1022px;
+  font-size: 32px;
+  padding: 5px 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}

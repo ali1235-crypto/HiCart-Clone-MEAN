@@ -1,0 +1,157 @@
+.products-category {
+  width: 210px;
+  margin-right: 7px;
+  margin-bottom: 7px;
+}
+.products-category p a {
+  color: #3c9ad5;
+}
+.products-category p a:hover {
+  color: black;
+}
+section.banners .banners-routing {
+  width: 100%;
+  text-align: center;
+}
+section.banners .banners-routing span {
+  width: 10px;
+  height: 10px;
+  background-color: #a59c9c;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer;
+}
+section.banners .banners-routing span.hover {
+  background-color: #494949;
+}
+section.offers {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px 0 12px 12px;
+}
+section.offers div.offer-item {
+  width: 24%;
+  margin-right: 12px;
+  margin-bottom: 12px;
+}
+section.banners {
+  width: 100%;
+  overflow: hidden;
+}
+section.banners figure {
+  display: flex;
+  animation: slidein 20s infinite;
+}
+@keyframes slidein {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  75% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.catchofday {
+  padding: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.catchofday .titlec {
+  margin: 15px 0px;
+}
+.catchofday .titlec span {
+  position: relative;
+  top: 7px;
+  display: inline-block;
+  z-index: 999;
+  background-color: white;
+}
+.catchofday .titlec h3 {
+  z-index: 1;
+  color: #3c9ad5;
+  font-size: xx-large;
+  font-weight: bold;
+  border-bottom: 1px solid #3c9ad5;
+}
+.catchofday .products {
+  display: flex;
+  animation: slidein1 120s infinite;
+  position: relative;
+}
+.catchofday .products .product-item {
+  width: 209px;
+  height: 448px;
+  margin-right: 6px;
+  border-radius: 6px;
+  font-size: 17px;
+  border: 1px solid #dfd2d2;
+  box-shadow: 1px 1px #dfd2d2;
+}
+.catchofday .products .product-item .product-image {
+  display: flex;
+  justify-content: center;
+  padding: 7px;
+}
+.catchofday .products .product-item .product-image img {
+  width: 193px;
+  height: 193px;
+  border: 1px solid;
+}
+.catchofday .products .product-item h3 {
+  text-align: center;
+  color: #3c9ad5;
+  font-size: 17px;
+}
+.catchofday .products .product-item .product-icons {
+  text-align: center;
+  margin: 20px 0;
+}
+.catchofday .products .product-item .product-icons fa-icon {
+  margin-left: 10px;
+  color: #3c9ad5;
+}
+.catchofday .products .product-item .ratestar fa-icon {
+  text-align: center;
+  color: #a59c9c;
+  font-size: 11px;
+  margin-left: 4px;
+}
+@keyframes slidein1 {
+  0% {
+    transform: translateX(0px);
+  }
+  14% {
+    transform: translateX(-225px);
+  }
+  28% {
+    transform: translateX(-436px);
+  }
+  42% {
+    transform: translateX(-647px);
+  }
+  56% {
+    transform: translateX(-858px);
+  }
+  70% {
+    transform: translateX(-1070px);
+  }
+  84% {
+    transform: translateX(-1283px);
+  }
+  94% {
+    transform: translateX(-1496px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

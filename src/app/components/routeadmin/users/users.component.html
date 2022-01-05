@@ -1,0 +1,73 @@
+<h2 style="padding: 8px;font-size: 28px;text-decoration: underline;">User Info{{v.lastname.valid}}</h2>
+<div class="info">
+  <form [formGroup]="v.form">
+    <div >
+      <span>FirstName : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="first"/>
+    </div>
+    <div >
+      <span>LastName : </span>
+      <input [ngClass]="{'a': !readonly,'b':!v.lastname.valid&&v.lastname.dirty}"  [readonly]="readonly" formControlName="last"/>
+    </div>
+    <div >
+      <span>Email : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="email"/>
+    </div>
+    <div >
+      <span>Date Of Birth : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="date"/>
+    </div>
+    <div >
+      <span>Gender : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="gender"/>
+    </div>
+    <div >
+      <span>Mobile Number </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="phone"/>
+    </div>
+    <div >
+      <span>isAdmin : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="admin"/>
+    </div>
+    <div >
+      <span>Password : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="password"/>
+    </div>
+    <div >
+      <span>Email Subscribe : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="emu"/>
+    </div>
+    <div >
+      <span>Created At : </span>
+      <input   readonly formControlName="ca"/>
+    </div>
+    <div >
+      <span>Updated At : </span>
+      <input   readonly formControlName="ua"/>
+    </div>
+    <div >
+      <button (click)="readonly=true;AddEdit()">{{uped}}</button>
+    </div>
+  </form>
+
+</div>
+<div class="child">
+  <fa-icon [icon]="faPlus" (click)="readonly=false;uped='Add';clearInput()" ></fa-icon>
+  <div class="columns">
+    <div style="width: 260px;">ID</div>
+    <div style="width: 184px;">FirstName</div>
+    <div style="width: 184px;">LastName</div>
+    <div style="width: 117px;">Select</div>
+    <div style="width: 117px;">Edit</div>
+    <div style="width: 84px;">Delete</div>
+  </div>
+  <div class="columns" *ngFor="let us of user">
+    <div style="width: 260px;">{{us._id}}</div>
+    <div style="width: 184px;">{{us.firstname}}</div>
+    <div style="width: 184px;">{{us.lastname}}</div>
+    <div style="width: 117px;"><button (click)="getUserId(us._id)">Select</button></div>
+    <div style="width: 117px;" (click)="readonly=false;uped='Edit';_ID=us._id">Edit</div>
+    <div style="width: 84px;" (click)="deleteUser(us._id)">Delete</div>
+  </div>
+</div>
+

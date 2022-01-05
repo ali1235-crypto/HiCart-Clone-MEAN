@@ -1,0 +1,40 @@
+
+<section class="banners">
+  <figure appAnimationContol>
+    <img *ngFor="let banner of banners;let i=index" [src]="'../assets/'+banner" style="height: 183px;" />
+  </figure>
+  <div style="width: 100%;" class="banners-routing">
+  <span (click)="''" ></span><span (click)="''" ></span><span (click)="''" ></span>
+
+</div>
+</section>
+<section class="offers">
+<div class="offer-item" *ngFor="let img of offers" >
+  <a routerLink="h" style="display: inline-block;"><img [src]="'../assets/offers/'+img" style="width: 100%;"/></a>
+</div>
+</section>
+<section class="catchofday" *ngFor="let title of titlep">
+<div class="titlec">
+  <h3><span>{{title}}</span> </h3>
+</div>
+<div class="products">
+  <div class="product-item" *ngFor="let i of [1,2,3,4,1,2,3,4,1,2,3,4,1,2]">
+    <div class="product-image">
+      <img src="" />
+    </div>
+    <div class="ratestar" style="text-align: center;">
+      <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
+    </div>
+    <h3>Lenovo,HD300 Bluetooth Wireless</h3>
+    <div class="product-price" style="color: #3c9ad5;text-align: center;">
+      <p style="margin-bottom:4px;">238,000 LBP</p>
+      <p style="text-decoration: line-through;color: #a59c9c;">400,000 LBP</p>
+    </div>
+    <div class="product-icons">
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+      <fa-icon [icon]="faHeart"></fa-icon>
+      <fa-icon [icon]="faBalanceScale"></fa-icon>
+    </div>
+  </div>
+</div>
+</section>

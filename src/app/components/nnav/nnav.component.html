@@ -1,0 +1,71 @@
+<nav>
+  <div class="nav-header">
+    <div class="info">
+      <ul style="font-style: italic;font-size: 11px;">
+        <li (mouseover)="opencontact=true" (mouseleave)="clear()">CONTACT US</li>
+        <li (mouseover)="openreturns=true" (mouseleave)="clear()">FREE RETURNS</li>
+        <li (mouseover)="opendelivery=true" (mouseleave)="clear()">CASH ON DELIVERY</li>
+        <div class="nav-dropdown-section"  *ngIf="opendelivery||opendeliverydiv"  style="left: 228px;" (mouseleave)="opendeliverydiv=false" (mouseover)="opendeliverydiv=true">
+          <p>
+            Pay for your order in cash upon receiving it at your doorstep
+          </p>
+        </div>
+        <div class="nav-dropdown-section" style="left: 126px;" *ngIf="openreturns||openreturnsdiv" (mouseleave)="openreturnsdiv=false" (mouseover)="openreturnsdiv=true">
+          <a href="">Changed your mind? You can return your order and get a full refund.</a>
+        </div>
+        <div class="nav-dropdown-section" style="left: 32px;" *ngIf="opencontact||opencontactdiv" (mouseleave)="opencontactdiv=false" (mouseover)="opencontactdiv=true">
+          <p>+961 04 549999</p>
+
+           <p> support@alicart.com</p>
+
+           <p>Reach Us<br>
+            Mon-Fri: 9AM - 4:00PM<br>
+           SAT: 9AM - 1PM</p>
+           <a href="" id="linkcontact">More Details</a>
+        </div>
+      </ul>
+    </div>
+    <div class="info">
+      <ul style="font-size: 12px;">
+        <li id="welcome"><a>Welcome to AliEc</a></li>
+        <li>Checkout</li>
+        <li style="display: flex;align-items: center;" (click)="classReference.openlogin=true">Log In <fa-icon [icon]="faSignInAlt" style="font-size: 18px;margin-left: 8px;"></fa-icon></li>
+      </ul>
+    </div>
+  </div>
+  <div class="nav-body">
+    <div class="title">
+      <p style="color: white;" >Ali<span style="color: #3c9ad5;">Cart</span></p>
+    </div>
+    <div class="search">
+      <input placeholder="Search for products,categories ..." />
+    </div>
+    <div class="productitem">
+      <div class="item">
+        <span class="raduis">0</span>
+        <span class="spicon"><fa-icon [icon]="faHeart" class="padd3"></fa-icon> WISHLIST</span>
+      </div>
+      <div class="item">
+        <span class="raduis">0</span>
+        <span class="spicon"><fa-icon [icon]="faBalanceScale" class="padd3"></fa-icon>COMPARE</span>
+      </div>
+      <div class="item">
+        <span class="raduis">0</span>
+        <span class="spicon"><fa-icon [icon]="faShoppingCart" class="padd3"></fa-icon>CART</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-footer">
+    <ul>
+      <li style="padding:8px 30px 8px 8px;background: white url('../assets/menu-arrow.png') right no-repeat;color: #999090;" >Categories</li>
+      <li *ngFor="let category of categroies;let i=index" class="licategories"  (mouseleave)="hover[i]=true;divhover=false;" (mouseover)="hover[i]=false;divhover=true;ind=0"><a href="" [ngClass]="{'aa':hover[i]}">{{category.name}}</a></li>
+    </ul>
+    <div class="div-category" [ngClass]="{'div-category-hover':divhover}" (mouseleave)="divhover=false" (mouseover)="divhover=true;">
+      <div class="products-category" *ngFor="let category of categroies[ind].childId" style="margin: 20px;">
+        <h4 style="font-weight: bold;" >{{category.name}}</h4>
+          <p *ngFor="let c of category.childId"><a routerLink="" >{{c.name}}</a></p>
+
+      </div>
+    </div>
+  </div>
+</nav>

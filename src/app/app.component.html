@@ -1,0 +1,45 @@
+<router-outlet name="nav"></router-outlet>
+<router-outlet></router-outlet>
+<section class="login" *ngIf="classReference.openlogin">
+  <div class="opa">
+    <div class="divvlogin">
+      <div class="divlogin">
+        <div>
+          <p style="border-bottom: 1px dotted;margin-bottom: 20px;">LOGIN</p>
+          <form [formGroup]="v.form">
+          <div class="logininfo">
+            <span class="option">EMAIL ADRESS <span style="color: red;font-size: 20px;">*</span></span><input class="option" formControlName="email"/>
+          </div>
+          <div class="logininfo">
+            <span class="option">PASSWORD <span style="color: red;font-size: 20px;">*</span></span><input class="option" formControlName="password"/>
+          </div>
+          <div style="display: flex;justify-content: flex-end;display: flex;justify-content: flex-end;margin-bottom: 35px;">
+            <div style="width: 50%;">
+              <a routerLink="" style="vertical-align: top;
+              font-size: 12px;
+              margin-right: 21px;">Forget Password?</a>
+            <button style="padding: 10px 30px;color: white;background-color: #3c9ad5;border: 0;border-radius: 5px;" (click)="Login()">LOGIN</button>
+            </div>
+          </div>
+          </form>
+        </div>
+        <div class="signup">
+          <span>Don't have an account? <a [routerLink]="[{outlets:{primary:'join',nav:'joinnav'}}]" (click)="classReference.openlogin=false">Join AliCart Now!</a></span>
+        </div>
+      </div>
+      <div class="or">
+        OR
+      </div>
+      <div class="siginwith">
+        <p style="border-bottom: 1px dotted;margin-bottom: 20px;">SIGN IN WITH</p>
+        <div class="btns">
+          <button style="background-color: #5475bc;">Facebook</button>
+          <button style="background-color: #de4f3e;" (click)="signInWithGoogle()">Google+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="close" (click)="classReference.openlogin=false">
+    X
+  </div>
+</section>

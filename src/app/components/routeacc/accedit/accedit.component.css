@@ -1,0 +1,78 @@
+.child {
+  padding: 26px 28px 20px;
+  border-top: 2px solid #3c9ad5;
+  border-left: 1px solid #d7c9c9;
+  border-right: 1px solid #d7c9c9;
+  border-bottom: 1px solid #d7c9c9;
+  margin-bottom: 50px;
+}
+.child h3 {
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 50px;
+}
+.child div {
+  margin-bottom: 15px;
+}
+.child div p {
+  margin-bottom: 5px;
+  font-family: "Noto Sans", sans-serif;
+}
+.child div input:not([type="checkbox"]) {
+  width: 631px;
+  height: 31px;
+  background-color: #fbfbfb;
+  outline: 0;
+  border: 1px solid #d7c9c9;
+  font-size: 15px;
+  padding: 5px;
+  color: gray;
+  border-radius: 5px;
+}
+.child div:last-child {
+  position: relative;
+}
+.child div:last-child input[type="checkbox"] {
+  margin-right: 12px;
+  cursor: pointer;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #d7c9c9;
+}
+.child div:last-child fa-icon {
+  position: absolute;
+  font-size: 23px;
+  top: -3px;
+  left: 2px;
+  color: #3c9ad5;
+  cursor: pointer;
+}
+.child div:last-child label {
+  font-size: 16px;
+  cursor: pointer;
+}
+.save-back {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-top: 1px solid #d7c9c9;
+}
+.save-back a {
+  color: black;
+  font-size: 17px;
+}
+.save-back a:hover {
+  color: #3c9ad5;
+}
+.save-back button {
+  height: 32px;
+  width: 81px;
+  border: 0;
+  border-radius: 6px;
+  color: white;
+  background-color: #3c9ad5;
+  cursor: pointer;
+}
