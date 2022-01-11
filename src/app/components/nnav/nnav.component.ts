@@ -1,6 +1,6 @@
+import { Category } from './../../models/category';
 import { CategoryServiceService } from './../../services/category-service.service';
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/models/category';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faBalanceScale } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import { Valid } from 'Valid';
 import { Login } from 'src/app/models/Login';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { AppComponent } from 'src/app/app.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class NnavComponent implements OnInit {
 
   public classReference = AppComponent;
 
-  constructor(private authservice:AuthServiceService,private categoryservice:CategoryServiceService) {
+  constructor(private authservice:AuthServiceService,private categoryservice:CategoryServiceService,private router:Router) {
   this.getCategories('')
   }
 
@@ -64,5 +65,13 @@ export class NnavComponent implements OnInit {
       this.opencontact=false
       this.openreturns=false
     }, 70);
+  }
+  routeProducts(category:string){
+    console.log(category);
+    this.router.navigate(['/'+category])
+  }
+  routeProducts2(category:Category,subcategory:string){
+    console.log(category);
+    this.router.navigate(['/'+category.name+'/'+subcategory])
   }
 }

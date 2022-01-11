@@ -1,3 +1,4 @@
+import { ProductServiceService } from './../../services/product-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
@@ -8,6 +9,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { Product } from 'src/app/models/Products';
 
 
 @Component({
@@ -38,12 +40,23 @@ export class ProductinfoComponent implements OnInit {
     "JOBHOST": "Test",
   };
 
+  product=new Product()
 
-  constructor(private Route:ActivatedRoute) { }
+  constructor(private Route:ActivatedRoute,private products:ProductServiceService) { }
 
   ngOnInit(): void {
     this.Route.params.subscribe(res=>{
-      console.log(res);
+      const id=res.id
+      this.products.getProductsById(id).subscribe(res=>{
+        this.product=res
+        var img0=this.product.img
+        var imgs=this.product.imgs
+        this.product.imgs=[img0].concat(imgs) as [string]
+        const imagediv=document.querySelector('figure')
+        if(imagediv)imagediv.style.width=this.product.imgs.length*460+"px"
+      },err=>{
+        console.log(err);
+      })
     })
   }
 
@@ -52,8 +65,8 @@ export class ProductinfoComponent implements OnInit {
 getTableDate(){
   const table=document.getElementById('table-spec')
     var s=""
-    Object.entries(this.data).forEach(function([key,value]) {
-      s+="<tr><td class>"+key+"</td><td>"+value+"</td></tr>"
+    Object.entries(this.product.specification).forEach(function([key,value]) {
+      if(value)s+="<tr><td class>"+key+"</td><td>"+value+"</td></tr>"
     })
     if(table)table.innerHTML=s
 }

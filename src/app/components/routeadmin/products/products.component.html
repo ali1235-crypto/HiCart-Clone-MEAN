@@ -62,8 +62,20 @@
       <input  [ngClass]="{'a': !readonly}"  readonly [readonly]="readonly" formControlName="dimensions"/>
     </div>
     <div >
+      <span>Discount : </span>
+      <input  [ngClass]="{'a': !readonly}"  readonly [readonly]="readonly" formControlName="discount"/>
+    </div>
+    <div >
+      <span>Warranty : </span>
+      <input  [ngClass]="{'a': !readonly}"  readonly [readonly]="readonly" formControlName="war"/>
+    </div>
+    <div >
       <span>Features : </span>
       <input  [ngClass]="{'a': !readonly}"  readonly [readonly]="readonly" formControlName="features"/>
+    </div>
+    <div >
+      <span>Delivery Fees : </span>
+      <input  [ngClass]="{'a': !readonly}"  readonly [readonly]="readonly" formControlName="delivery_fees"/>
     </div>
     <div >
       <button (click)="readonly=true;AddEdit()">{{uped}}</button>
@@ -72,7 +84,7 @@
 
 </div>
 <div class="child">
-  <fa-icon [icon]="faPlus" (click)="readonly=false;uped='Add';clearInput()" ></fa-icon>
+  <fa-icon [icon]="faPlus" (click)="readonly=false;uped='Add';" ></fa-icon>
   <div class="columns" style="height: 48px;">
     <div style="width: 260px;">ID</div>
     <div style="width: 184px;">Name</div>

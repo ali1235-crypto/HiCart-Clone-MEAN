@@ -1,0 +1,61 @@
+section {
+  padding: 41px 3px;
+  background-color: #56565a;
+}
+.info1 {
+  display: flex;
+}
+.info1 div {
+  padding: 12px;
+  padding-left: 24px;
+  width: 277px;
+  height: 239px;
+  color: white;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+}
+.info1 div:not(:first-child):not(:last-child) {
+  border-right: 1px solid white;
+}
+.info1 h2 {
+  font-weight: bold;
+  margin-bottom: 34px;
+}
+.btn-subscribe {
+  padding: 62px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-subscribe button {
+  width: 247px;
+  height: 31px;
+  background-color: #3c9ad5;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 5px;
+}
+.info2 {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 20px;
+  padding-bottom: 85px;
+  padding-top: 20px;
+  color: white;
+  border-top: 1px solid;
+}
+.info2 div:last-child {
+  display: flex;
+  justify-content: space-between;
+  width: 161px;
+  font-size: 19px;
+}
+#inp {
+  width: 225px;
+  height: 46px;
+  font-size: 15px;
+}

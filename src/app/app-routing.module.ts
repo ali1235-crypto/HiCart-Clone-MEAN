@@ -1,3 +1,5 @@
+import { FooterComponent } from './components/footer/footer.component';
+import { ListesProductsComponent } from './components/listes-products/listes-products.component';
 import { ProductinfoComponent } from './components/productinfo/productinfo.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NnavComponent } from './components/nnav/nnav.component';
@@ -37,11 +39,15 @@ const routes: Routes = [
     {path:'account/address',component:AddressComponent},
     {path:'account/mywhilelist',component:WhilelistComponent}
   ]},
+  {path:'product/:id',component:ProductinfoComponent},
+  {path:':category',component:ListesProductsComponent},
+  {path:':category/:subcategory',component:ListesProductsComponent},
+  {path:':category/:subcategory/:subbcategory',component:ListesProductsComponent},
   {path:'nav',component:NnavComponent,outlet:'nav'},
   {path:'',component:NnavComponent,outlet:'nav'},
   {path:'vide',component:VideComponent,outlet:'nav'},
   {path:'joinnav',component:JoinnavComponent,outlet:'nav'},
-  {path:'product/:id',component:ProductinfoComponent}
+  {path:'',component:FooterComponent,outlet:'footer'}
 ];
 
 @NgModule({

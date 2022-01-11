@@ -39,18 +39,21 @@ export class ProductsComponent implements OnInit {
     this.v.desc.setValue(pr.desc)
     this.v.price.setValue(pr.price)
     this.v.img.setValue(pr.img)
-    this.v.imgs.setValue(pr.imgs)
+    this.v.imgs.setValue(pr.imgs.toString())
     this.v.size.setValue(pr.size)
     this.v.soldby.setValue(pr.soldby)
     this.v.category.setValue(pr.category)
     this.v.availability.setValue(pr.availability)
     this.v.capacity.setValue(pr.capacity)
     this.v.type.setValue(pr.type)
+    this.v.discount.setValue(pr.discount)
+    this.v.delivery_fees.setValue(pr.delivery_fees)
     this.v.productcode.setValue(pr.specification.productcode)
     this.v.brand.setValue(pr.specification.brand)
     this.v.color.setValue(pr.specification.color)
     this.v.dimensions.setValue(pr.specification.dimensions)
     this.v.features.setValue(pr.specification.features)
+    this.v.WARRANTY_VALIDITY.setValue(pr.specification.WARRANTY_VALIDITY)
   }
   addProduct(product:Product){
     this.products.addProduct(product).subscribe(res=>{
@@ -82,19 +85,22 @@ export class ProductsComponent implements OnInit {
     pr.desc=this.v.desc.value
     pr.price=+this.v.price.value
     pr.img=this.v.img.value
-    pr.imgs=this.v.imgs.value
+    pr.imgs=this.v.imgs.value.split(',')
     pr.size=this.v.size.value
     pr.soldby=this.v.soldby.value
     pr.category=this.v.category.value
     pr.availability=(this.v.availability.value =="true");
     pr.capacity=this.v.capacity.value
     pr.type=this.v.type.value
+    pr.discount=+this.v.discount.value
+    pr.delivery_fees=(this.v.availability.value =="true");
     pr.specification={
       productcode:this.v.productcode.value,
       brand:this.v.brand.value,
       color:this.v.color.value,
       dimensions:this.v.dimensions.value,
-      features:this.v.features.value
+      features:this.v.features.value,
+      WARRANTY_VALIDITY:this.v.WARRANTY_VALIDITY.value
   }
     console.log(pr);
     if(this.uped=="Add"){

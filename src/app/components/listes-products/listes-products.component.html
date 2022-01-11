@@ -1,0 +1,87 @@
+<section>
+  <div class="img-banner">
+    <img />
+  </div>
+  <div class="path">
+    <ul><li><fa-icon [icon]="faHouseDamage"></fa-icon></li><li><a [routerLink]="" style="color: #3c9ad5;">{{category}}</a></li><li>{{subcategory}}</li></ul>
+  </div>
+  <div class="filter&listeproducts" style="display: flex;">
+    <div class="filter">
+      <h1>FILTER BY</h1>
+      <div class="filter-name">
+        <span>CATEGORY</span>
+        <fa-icon [icon]="changeIcon()" (click)="plusbool=!plusbool"></fa-icon>
+      </div>
+      <ul *ngIf="plusbool">
+        <li *ngFor="let i of [1,2,3]">
+          <input type="checkbox" style="margin-right: 10px;"/>
+          <a [routerLink]="" style="  color: #3c9ad5;">Garment Care (204)</a>
+        </li>
+      </ul>
+    </div>
+    <div class="listeproducts">
+      <div style="display: flex;
+      justify-content: space-between;
+      padding: 22px 35px;">
+        <div class="filter-price-name">
+          <select style="width: 188px;">
+            <option>Price</option>
+            <option>Name</option>
+          </select>
+          <fa-icon [icon]="faArrowUp" style="color: #3c9ad5;"></fa-icon>
+        </div>
+        <div class="filter-show">
+          <span style="color: #3c9ad5;">1-20 of 1534</span>
+          <span>Show</span>
+          <select style="width: 118px;">
+            <option>20</option>
+            <option>40</option>
+            <option>60</option>
+          </select>
+        </div>
+      </div>
+      <div class="products">
+        <div class="product-item" *ngFor="let product of productss">
+          <div class="product-image">
+            <img [src]="product.img" />
+          </div>
+          <div class="ratestar" style="text-align: center;">
+            <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
+          </div>
+          <h3>{{product.title}}</h3>
+          <div class="product-price" style="color: #3c9ad5;text-align: center;">
+            <p style="margin-bottom:4px;">{{product.price*(100-product.discount)/100 +" LBP"}}</p>
+            <p style="text-decoration: line-through;color: #a59c9c;">{{product.price +" LBP"}}</p>
+          </div>
+          <div class="product-icons">
+            <fa-icon [icon]="faShoppingCart"></fa-icon>
+            <fa-icon [icon]="faHeart"></fa-icon>
+            <fa-icon [icon]="faBalanceScale"></fa-icon>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;
+      justify-content: space-between;
+      padding: 22px 35px;">
+        <div class="filter-show">
+          <span>1-20 of 1534</span>
+          <span>Show</span>
+          <select style="width: 118px;">
+            <option>20</option>
+            <option>40</option>
+            <option>60</option>
+          </select>
+        </div>
+        <div class="pages">
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li><fa-icon [icon]="faArrowUp" ></fa-icon></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

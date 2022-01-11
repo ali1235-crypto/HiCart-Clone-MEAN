@@ -30,6 +30,8 @@ import { CategoriesComponent } from './components/routeadmin/categories/categori
 import { AddressComponent } from './components/routeacc/address/address.component';
 import { WhilelistComponent } from './components/routeacc/whilelist/whilelist.component';
 import { ProductinfoComponent } from './components/productinfo/productinfo.component';
+import { ListesProductsComponent } from './components/listes-products/listes-products.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ProductinfoComponent } from './components/productinfo/productinfo.compo
     CategoriesComponent,
     AddressComponent,
     WhilelistComponent,
-    ProductinfoComponent
+    ProductinfoComponent,
+    ListesProductsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

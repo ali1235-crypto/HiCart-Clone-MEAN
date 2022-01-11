@@ -8,6 +8,9 @@
 a {
   text-decoration: none;
 }
+ul {
+  list-style: none;
+}
 html,
 body {
   height: 100%;

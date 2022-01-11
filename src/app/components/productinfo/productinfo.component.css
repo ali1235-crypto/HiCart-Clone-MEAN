@@ -50,7 +50,6 @@ a {
 }
 #img figure {
   height: 100%;
-  width: 100%;
   position: relative;
   display: flex;
 }
@@ -185,7 +184,6 @@ a {
 .products .product-item .product-image img {
   width: 279px;
   height: 279px;
-  border: 1px solid;
 }
 .products .product-item h3 {
   text-align: center;

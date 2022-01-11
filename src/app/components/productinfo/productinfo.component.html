@@ -5,23 +5,22 @@
   <div class="product-info">
     <div class="product-imgs">
       <div class="list-imgs">
-        <ul><li><img class="hover" /></li><li><img class="hover" /></li><li><img class="hover" /></li></ul>
+        <ul><li *ngFor="let img of product.imgs"><img class="hover" [src]="img"/></li></ul>
       </div>
       <div id="img">
         <figure>
-          <img  />
-          <img  />
+          <img  *ngFor="let img of product.imgs" [src]="img" />
         </figure>
       </div>
     </div>
     <div class="product-principal-info">
-      <h1>Eufy, Solo Out doorCam C24 2K</h1>
-      <h1 style="color: #8b8b8b;">LBP 3,000,000</h1>
+      <h1>{{product.title}}</h1>
+      <h1 style="color: #8b8b8b;">LBP {{product.price}}</h1>
       <div class="btns-buy-addcart">
         <div class="input-number">
-          <div class="faicon"><fa-icon [icon]="faPlus" (click)="imageSlider()"></fa-icon></div>
-          <input type="number" style="width: 40px;height: 30px;"/>
-          <div class="faicon"><fa-icon [icon]="faMinus"></fa-icon></div>
+          <div class="faicon"><fa-icon [icon]="faPlus" (click)="inp.value=(+inp.value+1).toString()"></fa-icon></div>
+          <input  style="width: 40px;height: 30px;text-align: center;" #inp/>
+          <div class="faicon"><fa-icon [icon]="faMinus" (click)="inp.value=(+inp.value-1).toString()"></fa-icon></div>
         </div>
         <button style="width: 163px;background-color: #3c9ad5;">ADD TO CART</button>
         <button style="width: 173px;background-color: #20b82e;">BUY NOW</button>
@@ -37,7 +36,7 @@
         </div>
         <div>
           <span class="title-span">Sold By:</span>
-          <span class=""><a routerLink="">beirutco</a></span>
+          <span class=""><a routerLink="">{{product.soldby}}</a></span>
         </div>
         <div class="stars">
           <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
@@ -58,7 +57,7 @@
       </div>
       <div class="productother-info">
         <h2 style="color: #3c9ad5;">{{getTitle()}}</h2>
-        <p *ngIf="desc">Canon PowerShot ELPH 180  20.0 Megapixels  8X Optical Zoom 3 Inch Screen 720P Video Silver</p>
+        <p *ngIf="desc">{{product.desc}}</p>
         <table  id="table-spec" >
 
         </table>

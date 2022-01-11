@@ -18,6 +18,9 @@ export class ValidAddP {
   dimensions: FormControl;
   features: FormControl;
   size: FormControl;
+  discount: FormControl;
+  WARRANTY_VALIDITY: FormControl;
+  delivery_fees:FormControl
 
   constructor() {
     this.title= new FormControl(
@@ -40,6 +43,9 @@ export class ValidAddP {
     this.color=new FormControl('',[Validators.required])
     this.dimensions=new FormControl('',[Validators.required])
     this.features=new FormControl('',[Validators.required])
+    this.discount=new FormControl('')
+    this.WARRANTY_VALIDITY=new FormControl('')
+    this.delivery_fees=new FormControl('')
 
   this.form=new FormGroup({
       'title':this.title,
@@ -57,7 +63,10 @@ export class ValidAddP {
       'brand':this.brand,
       'color':this.color,
       'dimensions':this.dimensions,
-      'features':this.features
+      'features':this.features,
+      'discount':this.discount,
+      'war':this.WARRANTY_VALIDITY,
+      'delivery_fees':this.delivery_fees
     })
   }
 }
