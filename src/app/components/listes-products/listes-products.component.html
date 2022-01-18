@@ -8,32 +8,64 @@
   <div class="filter&listeproducts" style="display: flex;">
     <div class="filter">
       <h1>FILTER BY</h1>
-      <div class="filter-name">
+      <div class="filter-name" *ngIf="cat">
         <span>CATEGORY</span>
-        <fa-icon [icon]="changeIcon()" (click)="plusbool=!plusbool"></fa-icon>
+        <fa-icon [icon]="changeIcon(0)" (click)="plusbool[0]=!plusbool[0]"></fa-icon>
       </div>
-      <ul *ngIf="plusbool">
-        <li *ngFor="let i of [1,2,3]">
+      <ul *ngIf="plusbool[0]">
+        <li *ngFor="let filt of filter[0]">
           <input type="checkbox" style="margin-right: 10px;"/>
-          <a [routerLink]="" style="  color: #3c9ad5;">Garment Care (204)</a>
+          <a [routerLink]="" style="  color: #3c9ad5;">{{filt._id+' ('+filt.total+')'}}</a>
         </li>
       </ul>
+      <div class="filter-name">
+        <span>PRICE</span>
+        <fa-icon [icon]="changeIcon(1)" (click)="plusbool[1]=!plusbool[1]"></fa-icon>
+      </div>
+      <div class="slider">
+        <div class="field"></div>
+        <input type="range" class="range" [value]="range1" min="0" max="100" (input)="range1=a1.value;range()" #a1/>
+        <input type="range" class="range" style="transform: translateY(-24px);" [value]="range2" min="0" max="100" (input)="range2=a.value;range()" #a/>
+      </div>{{range2+";;"+range1}}
+      <div class="filter-name">
+        <span>BRAND</span>
+        <fa-icon [icon]="changeIcon(1)" (click)="plusbool[2]=!plusbool[2]"></fa-icon>
+      </div>
+      <ul *ngIf="plusbool[2]">
+        <li *ngFor="let filt of filter[1]">
+          <input type="checkbox" style="margin-right: 10px;"/>
+          <a [routerLink]="" style="  color: #3c9ad5;">{{filt._id+' ('+filt.total+')'}}</a>
+        </li>
+      </ul>
+      <div class="filter-name">
+        <span>CAPACITY</span>
+        <fa-icon [icon]="changeIcon(2)" (click)="plusbool[3]=!plusbool[3]"></fa-icon>
+      </div>
+      <ul *ngIf="plusbool[3]">
+        <ng-container *ngFor="let filt of filter[2]">
+          <li *ngIf="filt._id">
+            <input type="checkbox" style="margin-right: 10px;"/>
+            <a [routerLink]="" style="  color: #3c9ad5;">{{filt._id+' ('+filt.total+")"}}</a>
+          </li>
+        </ng-container>
+      </ul>
     </div>
+
     <div class="listeproducts">
       <div style="display: flex;
       justify-content: space-between;
       padding: 22px 35px;">
         <div class="filter-price-name">
-          <select style="width: 188px;">
-            <option>Price</option>
-            <option>Name</option>
+          <select style="width: 188px;" #selectfieldname (change)="fieldname=selectfieldname.value;changeSelect()">
+            <option value="price">Price</option>
+            <option value="title">Name</option>
           </select>
-          <fa-icon [icon]="faArrowUp" style="color: #3c9ad5;"></fa-icon>
+          <fa-icon [icon]="faArrowUp" style="color: #3c9ad5;" [ngClass]="{'faic1':sort=='1','faic2':sort=='-1'}" (click)="toggleAscDesc()"></fa-icon>
         </div>
         <div class="filter-show">
-          <span style="color: #3c9ad5;">1-20 of 1534</span>
+          <span style="color: #3c9ad5;">{{((+page-1)*(+limit)+1)+'-'+showingUntil()}} of {{total}}</span>
           <span>Show</span>
-          <select style="width: 118px;">
+          <select style="width: 118px;"  #select (change)="limit=select.value;changeSelect()">
             <option>20</option>
             <option>40</option>
             <option>60</option>
@@ -64,9 +96,9 @@
       justify-content: space-between;
       padding: 22px 35px;">
         <div class="filter-show">
-          <span>1-20 of 1534</span>
+          <span>{{page+'-'+limit}} of {{total}}</span>
           <span>Show</span>
-          <select style="width: 118px;">
+          <select style="width: 118px;" #select2 (change)="limit=select2.value;changeSelect()">
             <option>20</option>
             <option>40</option>
             <option>60</option>
@@ -74,11 +106,9 @@
         </div>
         <div class="pages">
           <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li><fa-icon [icon]="faArrowUp" ></fa-icon></li>
+            <li><fa-icon [icon]="faArrowUp" (click)="indexleftreight=indexleftreight-1;getPage(indexleftreight)"></fa-icon></li>
+            <li *ngFor="let nb of list_pages" (click)="getPage(nb)" class="li-pages" [ngClass]="{'li-pages-selected':nb==1}">{{nb}}</li>
+            <li><fa-icon [icon]="faArrowUp" (click)="indexleftreight=indexleftreight+1;getPage(indexleftreight)"></fa-icon></li>
           </ul>
         </div>
       </div>

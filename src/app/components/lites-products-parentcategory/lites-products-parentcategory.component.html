@@ -1,0 +1,52 @@
+<section>
+  <div class="img-banner">
+    <img />
+  </div>
+  <div class="path">
+    <ul><li><fa-icon [icon]="faHouseDamage"></fa-icon></li><li><a [routerLink]="" style="color: #3c9ad5;">{{category}}</a></li></ul>
+  </div>
+</section>
+<section class="banner-subcategory">
+  <div style=" left: 4px;" (click)="prevButton()" class="arrow">
+    <span style="transform: rotate(-45deg);"></span>
+  </div>
+  <figure>
+    <img *ngFor="let i of [1,2,3,4,5]" src="../../../assets/d_smoke-free.jpg"/>
+  </figure>
+  <div style="  right: 4px;padding-right: 8px;" (click)="nextButton()" class="arrow">
+    <span style="transform: rotate(135deg);"></span>
+  </div>
+</section>
+<section class="catchofday" *ngFor="let title of titlep;let i = index" (mousedown)="animateEnter($event,i)" (mouseup)="animateEnterup(i)">
+  <div style="  left: 4px;" (click)="prevButton2(i)" class="arrow">
+      <span style="transform: rotate(-45deg);"></span>
+    </div>
+  <div class="titlec">
+    <h3><span>{{title}}</span> </h3>
+  </div>
+  <div class="parentproducts" style="overflow: hidden;"  >
+    <div class="products">
+      <div class="product-item" *ngFor="let i of [1,2,3,4,1,2,3,4]">
+        <div class="product-image">
+          <img src="" />
+        </div>
+        <div class="ratestar" style="text-align: center;">
+          <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
+        </div>
+        <h3>Lenovo,HD300 Bluetooth Wireless</h3>
+        <div class="product-price" style="color: #3c9ad5;text-align: center;">
+          <p style="margin-bottom:4px;">238,000 LBP</p>
+          <p style="text-decoration: line-through;color: #a59c9c;">400,000 LBP</p>
+        </div>
+        <div class="product-icons">
+          <fa-icon [icon]="faShoppingCart"></fa-icon>
+          <fa-icon [icon]="faHeart"></fa-icon>
+          <fa-icon [icon]="faBalanceScale"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="  right: 4px;padding-right: 8px;" (click)="nextButton2(i)" class="arrow">
+    <span style="transform: rotate(135deg);"></span>
+  </div>
+  </section>

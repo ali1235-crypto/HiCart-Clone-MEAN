@@ -1,3 +1,4 @@
+import { LitesProductsParentcategoryComponent } from './components/lites-products-parentcategory/lites-products-parentcategory.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ListesProductsComponent } from './components/listes-products/listes-products.component';
 import { ProductinfoComponent } from './components/productinfo/productinfo.component';
@@ -40,7 +41,7 @@ const routes: Routes = [
     {path:'account/mywhilelist',component:WhilelistComponent}
   ]},
   {path:'product/:id',component:ProductinfoComponent},
-  {path:':category',component:ListesProductsComponent},
+  {path:':category',component:LitesProductsParentcategoryComponent},
   {path:':category/:subcategory',component:ListesProductsComponent},
   {path:':category/:subcategory/:subbcategory',component:ListesProductsComponent},
   {path:'nav',component:NnavComponent,outlet:'nav'},

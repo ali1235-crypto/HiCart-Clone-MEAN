@@ -1,0 +1,129 @@
+.img-banner {
+  height: 207px;
+  margin-bottom: 15px;
+}
+.img-banner img {
+  width: 100%;
+  height: 100%;
+}
+.path ul {
+  display: flex;
+  font-size: 13px;
+  width: 357px;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.path ul li {
+  border-right: 1px dotted;
+  padding: 8px 14px;
+}
+.path ul li fa-icon {
+  font-size: 17px;
+  color: #3c9ad5;
+}
+.banner-subcategory {
+  padding: 35px 0px;
+  overflow: hidden;
+  position: relative;
+  margin: 0px 35px;
+}
+.arrow {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  z-index: 999;
+  border-radius: 50%;
+  border: 2px solid gray;
+  top: 50%;
+  margin-top: -12.5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5px;
+}
+.arrow span {
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid gray;
+  border-left: 2px solid gray;
+  display: inline-block;
+}
+.banner-subcategory img {
+  width: 293.75px;
+  height: 204px;
+}
+.banner-subcategory figure {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  transition: left 1s;
+}
+.catchofday {
+  padding: 12px 30px 12px 35px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.catchofday .titlec {
+  margin: 15px 0px;
+}
+.catchofday .titlec span {
+  position: relative;
+  top: 7px;
+  display: inline-block;
+  z-index: 999;
+  background-color: white;
+}
+.catchofday .titlec h3 {
+  z-index: 1;
+  color: #3c9ad5;
+  font-size: xx-large;
+  font-weight: bold;
+  border-bottom: 1px solid #3c9ad5;
+}
+.catchofday .products {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slidein1 120s infinite;
+  position: relative;
+  left: 0;
+  width: 1714px;
+  height: 490px;
+}
+.catchofday .products .product-item {
+  width: 209px;
+  height: 448px;
+  border-radius: 6px;
+  font-size: 17px;
+  box-shadow: 3px 11px 9px #e9e9e9, -5px -5px 8px #e9e9e9;
+}
+.catchofday .products .product-item .product-image {
+  display: flex;
+  justify-content: center;
+  padding: 7px;
+  width: 205px;
+}
+.catchofday .products .product-item .product-image img {
+  width: 191px;
+  height: 191px;
+}
+.catchofday .products .product-item h3 {
+  text-align: center;
+  color: #3c9ad5;
+  font-size: 17px;
+}
+.catchofday .products .product-item .product-icons {
+  text-align: center;
+  margin: 20px 0;
+}
+.catchofday .products .product-item .product-icons fa-icon {
+  margin-left: 10px;
+  color: #3c9ad5;
+}
+.catchofday .products .product-item .ratestar fa-icon {
+  text-align: center;
+  color: #a59c9c;
+  font-size: 11px;
+  margin-left: 4px;
+}

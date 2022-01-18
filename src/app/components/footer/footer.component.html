@@ -29,7 +29,13 @@
       <h2>NEWSLETTER</h2>
       <label for="inp" style="display: inline-block;margin-bottom: 28px;">Get The Latest News & Offers</label>
       <input id="inp" placeholder="Enter Email Adress"/>
-      <p></p>
+      <form [formGroup]="aFormGroup" class="g-recaptcha">
+        <ngx-recaptcha2 #captchaElem
+          [siteKey]="siteKey"
+
+          formControlName="recaptcha">
+        </ngx-recaptcha2>
+      </form>
     </div>
   </div>
   <div class="btn-subscribe">

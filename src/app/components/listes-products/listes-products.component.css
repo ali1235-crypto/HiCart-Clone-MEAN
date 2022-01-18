@@ -85,14 +85,23 @@ option {
 }
 .filter-price-name fa-icon {
   font-size: 20px;
-  transform: rotate(45deg);
   transition: 0.5s ease-in-out;
   display: inline-block;
   cursor: pointer;
 }
-.filter-price-name fa-icon:hover {
+.faic1 {
+  transform: rotate(45deg);
+}
+.faic1:hover {
   transition: 0.5s ease-in-out;
   transform: rotate(135deg);
+}
+.faic2 {
+  transform: rotate(135deg);
+}
+.faic2:hover {
+  transition: 0.5s ease-in-out;
+  transform: rotate(45deg);
 }
 .products {
   display: flex;
@@ -155,10 +164,44 @@ option {
   display: inline-block;
   color: #3c9ad5;
 }
-.pages ul li:hover {
-  color: white;
+.pages ul li:hover,
+.li-pages-selected {
+  color: white !important;
   background-color: #3c9ad5;
 }
 .pages ul li:hover fa-icon {
   color: white;
+}
+
+.slider {
+  height: 12px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.field {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  height: 10px;
+  border-radius: 4px;
+  background-color: #e1dcdc;
+}
+.range {
+  width: 100%;
+  height: 12px;
+  transform: translateY(-4px);
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  width: 16.8px;
+  height: 16.8px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  background-color: #3c9ad5;
+  -webkit-appearance: none;
+  pointer-events: auto;
 }

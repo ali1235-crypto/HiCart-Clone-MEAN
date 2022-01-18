@@ -20,8 +20,8 @@ export class ProductServiceService {
   getProductsById(Id:string):Observable<Product>{
     return this.http.get<Product>('http://localhost:3000/api/products/'+Id,this.token)
   }
-  getProductsByCategory(category:string):Observable<any>{
-    return this.http.get<any>('http://localhost:3000/api/products?category='+category,this.token)
+  getProductsByCategory(category:string,page:string='1',limit:string='20',fieldname:string='price',sort:string='1'):Observable<any>{
+    return this.http.get<any>('http://localhost:3000/api/products?category='+category+"&page="+page+'&limit='+limit+'&fieldname='+fieldname+'&sort='+sort,this.token)
   }
   addProduct(product:Product){
     return this.http.post<Product>('http://localhost:3000/api/products',product,this.token)

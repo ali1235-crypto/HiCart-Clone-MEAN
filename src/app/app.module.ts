@@ -32,6 +32,8 @@ import { WhilelistComponent } from './components/routeacc/whilelist/whilelist.co
 import { ProductinfoComponent } from './components/productinfo/productinfo.component';
 import { ListesProductsComponent } from './components/listes-products/listes-products.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LitesProductsParentcategoryComponent } from './components/lites-products-parentcategory/lites-products-parentcategory.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { FooterComponent } from './components/footer/footer.component';
     WhilelistComponent,
     ProductinfoComponent,
     ListesProductsComponent,
-    FooterComponent
+    FooterComponent,
+    LitesProductsParentcategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MatMenuModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    NgxCaptchaModule
   ],
   providers: [
     {
