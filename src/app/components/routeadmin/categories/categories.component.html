@@ -1,1 +1,56 @@
-<p>categories works!</p>
+<h2 style="padding: 8px;font-size: 28px;text-decoration: underline;">Product Info</h2>
+<div class="info">
+  <form [formGroup]="v.form">
+    <div >
+      <span>Name : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="name"/>
+    </div>
+    <div >
+      <span>Path : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="path"/>
+    </div>
+    <div >
+      <span>Parent : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="parent"/>
+    </div>
+    <div >
+      <span>ImgLogo : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="imglogo" />
+    </div>
+    <div >
+      <span>ImgBanner : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="imgbanner" />
+    </div>
+    <div >
+      <span>ChildsId : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="childsid"/>
+    </div>
+    <div >
+      <button (click)="readonly=true;AddEdit()">{{uped}}</button>
+    </div>
+  </form>
+
+</div>
+<div class="child">
+  <fa-icon [icon]="faPlus" (click)="readonly=false;uped='Add';" ></fa-icon>
+  <div class="columns" style="height: 48px;">
+    <div style="width: 260px;">ID</div>
+    <div style="width: 184px;">Name</div>
+    <div style="width: 184px;">ImgLogo</div>
+    <div style="width: 117px;">Select</div>
+    <div style="width: 117px;">Edit</div>
+    <div style="width: 84px;">Delete</div>
+  </div>
+  <div class="columns" *ngFor="let ca of categories">
+    <div style="width: 260px;color: #3c9ad5;;">{{ca._id}}</div>
+    <div style="width: 184px;color: #3c9ad5;padding: 7px;">{{ca.name}}</div>
+    <div style="width: 184px;"><img style="height: 110px;
+      width: 130px;
+      padding: 5px;border: 1px solid #3c9ad5;" [src]="ca.imglogo"/></div>
+    <div style="width: 117px;"><button (click)="getCategoryId(ca._id)">Select</button></div>
+    <div style="width: 117px;" (click)="readonly=false;uped='Edit'">Edit</div>
+    <div style="width: 84px;" (click)="deleteCategory(ca._id)">Delete</div>
+  </div>
+</div>
+
+

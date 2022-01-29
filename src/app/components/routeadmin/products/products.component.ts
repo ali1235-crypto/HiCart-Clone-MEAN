@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit {
 
   getProducts(){
     this.products.getProducts().subscribe(res=>{
-      this.productss=res
+      this.productss=res.products
       console.log(res);
     },err=>{
       console.log(err);

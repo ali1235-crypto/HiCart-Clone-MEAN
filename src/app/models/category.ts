@@ -1,9 +1,12 @@
 
 
 export class Category {
+  _id!:string
   name!:string
   parent!:string
   path!:string
-  childId!:Category[]
+  imglogo!:string
+  imgbanner!:string
+  childsId!:Category[]
 }
 

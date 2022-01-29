@@ -7,13 +7,13 @@ import { AuthServiceService } from '../auth-service.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AutGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
   jwthelper=new JwtHelperService()
   constructor(private Route:Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
       if(!!localStorage.getItem('token')){
-        if(!this.jwthelper.isTokenExpired(localStorage.getItem('token') as string)&&!this.jwthelper.decodeToken(localStorage.getItem('token') as string).isAdmin){
+        if(!this.jwthelper.isTokenExpired(localStorage.getItem('token') as string)&&this.jwthelper.decodeToken(localStorage.getItem('token') as string)){
          return  true
         }
       }

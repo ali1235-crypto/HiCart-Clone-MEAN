@@ -7,39 +7,60 @@
         <fa-icon [icon]="faUser"></fa-icon>
         <h4>Contact Information</h4>
       </div>
-      <a href="">Edit</a>
-      <span>ali kbar</span><br>
-      <span>alliokbarrio1234@gmail.com</span><br>
-      <a (click)="openaccinfo()">Change Password</a>
+      <a (click)="routeChildProfile(0)">Edit</a>
+      <span>{{user.firstname+' '+user.lastname}}</span><br>
+      <span>{{user.email}}</span><br>
+      <a (click)="routeChildProfile(1)">Change Password</a>
     </div>
     <div class="child child2">
       <div class="titleAcc">
         <fa-icon [icon]="faEnvelopeOpen"></fa-icon>
         <h4>Subscriptions</h4>
       </div>
-      <a href="">Edit</a>
-      <span>You are currently subscribed to our Newsletter</span><br>
+      <a (click)="routeChildProfile(2)">Edit</a>
+      <span *ngIf="user.emsubscribe">You are currently subscribed to our Newsletter</span>
+      <span *ngIf="!user.emsubscribe">You are not currently subscribed to the newsletter</span>
+      <br>
     </div>
   </div>
 </div>
 <div class="accountInfo">
   <h2>ADDRESS BOOK <a href="">Manage Addresses</a></h2>
   <div class="parent">
-    <div class="child child1">
+    <div class="child" [ngClass]="{'child1':!user.addresscontact}">
       <div class="titleAcc">
         <fa-icon [icon]="faHome"></fa-icon>
         <h4>Default Billing Address</h4>
       </div>
-      <a href="">Edit Address</a>
-      <span>You have not set a default billing address.</span><br>
+      <a (click)="routeChildProfile(3)">Edit Address</a>
+      <span *ngIf="!checkValueUndefined(user.addresscontact)">You have not set a default billing address.</span>
+      <div *ngIf="checkValueUndefined(user.addresscontact)">
+        <span>
+          <p>{{'Fisrt Name : '+user.addresscontact.firstname}}</p>
+          <p>{{'Last Name : '+user.addresscontact.lastname}}</p>
+          <p>{{'Company Name : '+user.addresscontact.company}}</p>
+          <p>{{'Telephone Name : '+user.addresscontact.telephone}}</p>
+          <p>{{'Fax Name : '+user.addresscontact.fax}}</p>
+        </span>
+      </div>
     </div>
-    <div class="child child2">
+    <div class="child" [ngClass]="{'child2':!user.addresshipping}">
       <div class="titleAcc">
         <fa-icon [icon]="faCar"></fa-icon>
         <h4>Default Shipping Address</h4>
       </div>
-      <a href="">Edit Address</a>
-      <span>You have not set a default shipping address.</span><br>
+      <a (click)="routeChildProfile(4)">Edit Address</a>
+      <span *ngIf="!checkValueUndefined(user.addresshipping)">You have not set a default shipping address.</span>
+      <div *ngIf="checkValueUndefined(user.addresshipping)">
+        <span>
+          <p>{{'Address Nick Name : '+user.addresshipping.addressnickname}}</p>
+          <p>{{'Country : '+user.addresshipping.country}}</p>
+          <p>{{'State Province : '+user.addresshipping.stateprovince}}</p>
+          <p>{{'City : '+user.addresshipping.city}}</p>
+          <p>{{'Zip : '+user.addresshipping.zip}}</p>
+          <p>{{'Street Name : '+user.addresshipping.streetnameno}}</p>
+        </span>
+      </div>
     </div>
   </div>
 </div>

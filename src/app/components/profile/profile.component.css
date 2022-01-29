@@ -26,7 +26,6 @@ section .myAccount ul li:hover,
   background-color: #f4f4f4;
 }
 section .myAccountInfo {
-  border: 1px solid red;
   width: 950px;
 }
 .accountInfo {

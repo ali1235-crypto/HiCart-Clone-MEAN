@@ -80,15 +80,15 @@
           <div class="ratestar" style="text-align: center;">
             <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
           </div>
-          <h3>{{product.title}}</h3>
+          <h3 (click)="routePproductId(product._id)">{{product.title}}</h3>
           <div class="product-price" style="color: #3c9ad5;text-align: center;">
-            <p style="margin-bottom:4px;">{{product.price*(100-product.discount)/100 +" LBP"}}</p>
-            <p style="text-decoration: line-through;color: #a59c9c;">{{product.price +" LBP"}}</p>
+            <p style="margin-bottom:4px;" *ngIf="product.discount">{{product.price*(100-product.discount)/100 +" LBP"}}</p>
+            <p  [style]="styleprice(product.discount)">{{product.price +" LBP"}}</p>
           </div>
           <div class="product-icons">
-            <fa-icon [icon]="faShoppingCart"></fa-icon>
-            <fa-icon [icon]="faHeart"></fa-icon>
-            <fa-icon [icon]="faBalanceScale"></fa-icon>
+            <fa-icon [icon]="faShoppingCart" (click)="''"></fa-icon>
+            <fa-icon [icon]="faHeart" (click)="''"></fa-icon>
+            <fa-icon [icon]="faBalanceScale" (click)="''"></fa-icon>
           </div>
         </div>
       </div>

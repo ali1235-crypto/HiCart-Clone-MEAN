@@ -1,3 +1,4 @@
+import { AppComponent } from 'src/app/app.component';
 import { Component, ContentChildren, OnInit, QueryList, TemplateRef } from '@angular/core';
 
 import { SocialAuthService } from "angularx-social-login";
@@ -14,14 +15,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  user: SocialUser | undefined;
-  loggedIn: boolean | undefined;
 
-
+  classRef=ProfileComponent
   list=['Account Dashboard','Account Information','Address Book','My Orders','My Product Reviews','My Wishlist','My Subscriptions','Gift Card','My Wallet','Return Requests']
 
 
-  constructor(private authService: SocialAuthService,private router:Router,private route:ActivatedRoute) { }
+  constructor(private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {}
 
@@ -36,13 +35,22 @@ export class ProfileComponent implements OnInit {
     else if(nb==2){
       this.router.navigate(['account/address'],{relativeTo:this.route})
     }
+    else if(nb==3){
+      this.router.navigate(['account/order'],{relativeTo:this.route})
+    }
     else if(nb==5){
       this.router.navigate(['account/mywhilelist'],{relativeTo:this.route})
+    }
+    else if(nb==6){
+      this.router.navigate(['account/subscription'],{relativeTo:this.route})
+    }
+    else{
+      alert('لم ابرمج هذه الصفحة')
     }
     return ''
   }
 
-  hovernav(j:number){
+  static hovernav(j:number){
     var listes=document.getElementsByClassName('hover-li')
     for(var i=0;i<listes.length;i++){
       if(i==j){

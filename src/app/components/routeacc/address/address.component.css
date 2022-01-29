@@ -64,3 +64,6 @@
 
   transition: background-color 0.3s;
 }
+.error.ng-touched {
+  border-color: red !important;
+}

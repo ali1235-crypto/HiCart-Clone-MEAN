@@ -126,6 +126,7 @@ option {
 }
 .products .product-item h3 {
   text-align: center;
+  height: 56px;
   color: #3c9ad5;
   font-size: 17px;
   width: 236px;
@@ -204,4 +205,5 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: #3c9ad5;
   -webkit-appearance: none;
   pointer-events: auto;
+  position: relative;
 }

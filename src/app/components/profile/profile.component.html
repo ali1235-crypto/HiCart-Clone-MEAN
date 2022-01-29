@@ -2,7 +2,7 @@
   <div class="myAccount">
     <ul>
       <li style="background-color: #3c9ad5;"><h2 style="margin:0;color: white;font-weight: bold;">MY ACCOUNT</h2></li>
-      <li *ngFor="let n of list;let i=index" class="hover-li" (click)="rout(i);hovernav(i)">{{n}}</li>
+      <li *ngFor="let n of list;let i=index" class="hover-li" (click)="rout(i);classRef.hovernav(i)">{{n}}</li>
     </ul>
   </div>
   <div class="myAccountInfo" >

@@ -76,3 +76,6 @@
   background-color: #3c9ad5;
   cursor: pointer;
 }
+.error.ng-touched {
+  border-color: red !important;
+}

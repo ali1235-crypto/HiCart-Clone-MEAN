@@ -1,3 +1,4 @@
+import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
 import { AnimationContolDirective } from './directives/animation-contol.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
 import { NnavComponent } from './components/nnav/nnav.component';
@@ -34,6 +35,12 @@ import { ListesProductsComponent } from './components/listes-products/listes-pro
 import { FooterComponent } from './components/footer/footer.component';
 import { LitesProductsParentcategoryComponent } from './components/lites-products-parentcategory/lites-products-parentcategory.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { BannersComponent } from './components/routeadmin/banners/banners.component';
+import { OffersComponent } from './components/routeadmin/offers/offers.component';
+import { OrdersComponent } from './components/routeadmin/orders/orders.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { MyorderComponent } from './components/routeacc/myorder/myorder.component';
+import { SubscComponent } from './components/routeacc/subsc/subsc.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +63,13 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     ProductinfoComponent,
     ListesProductsComponent,
     FooterComponent,
-    LitesProductsParentcategoryComponent
+    LitesProductsParentcategoryComponent,
+    OffersComponent,
+    BannersComponent,
+    OrdersComponent,
+    ShoppingCartComponent,
+    MyorderComponent,
+    SubscComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +100,11 @@ import { NgxCaptchaModule } from 'ngx-captcha';
           }
         ]
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi:true
     }
   ],
   bootstrap: [AppComponent]

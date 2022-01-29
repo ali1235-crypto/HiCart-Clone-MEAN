@@ -1,0 +1,54 @@
+<h2 style="padding: 8px;font-size: 28px;text-decoration: underline;">Offer Info</h2>
+
+<div class="child">
+  <div class="columns" style="height: 48px;">
+    <div style="width: 220px;">UserID</div>
+    <div style="width: 224px;
+    justify-content: space-between;
+    padding: 0px 5px 0px 20px;">
+      <span>Title</span>
+      <span style="color: #e78118;font-weight: bold;">Qty</span>
+    </div>
+    <div style="width: 90px;">Amount</div>
+    <div style="width: 207px;">AddressNickName</div>
+    <div style="width: 121px;">MoreInfo</div>
+    <div style="width: 84px;
+    color: #e78118;
+    font-weight: bold;">Status</div>
+  </div>
+  <div class="columns" *ngFor="let or of orders">
+    <div style="width: 220px;color: #3c9ad5;">{{or.userid}}</div>
+    <div style="width: 224px;padding: 7px;">
+      <div *ngFor="let pr of or.products" style="display: flex;justify-content: space-between;align-items: center;">
+        <span>{{pr.productid.title}}</span>
+        <span style="font-size: 24px;
+        color: #e78118;
+        font-weight: bold;">{{pr.qty}}</span>
+      </div>
+    </div>
+    <div style="width: 90px;">{{or.amount}}</div>
+    <div style="width: 207px;">{{or.address.addressnickname}}</div>
+    <div style="    width: 121px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    padding: 10px;
+    justify-content: center;">
+      <div><span>Country : </span><span style="color: #e78118;">{{or.address.country}}</span></div>
+      <div><span>City : </span><span style="color: #e78118;">{{or.address.city}}</span></div>
+      <div><span>Zip : </span><span style="color: #e78118;">{{or.address.zip}}</span></div>
+    </div>
+    <div style="width: 84px;">
+      <select style="    height: 50%;
+      width: 100%;
+      color: #e78118;
+      font-weight: bold;
+      font-size: 12px;">
+        <option *ngFor="let opt of ['Pending','Compltete']" [selected]="opt==or.status">{{opt}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+

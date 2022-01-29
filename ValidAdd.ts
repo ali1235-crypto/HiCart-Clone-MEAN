@@ -10,6 +10,7 @@ export class ValidAdd {
   email: FormControl;
   password: FormControl;
   emu:FormControl
+  type:FormControl
   admin:FormControl
   ca:FormControl
   ua:FormControl
@@ -26,6 +27,7 @@ export class ValidAdd {
     this.email=new FormControl('',[Validators.required,Validators.email]);
     this.password=new FormControl('',[Validators.required,Validators.pattern(/[a-zA-z0-9.-]/g)]);
     this.emu=new FormControl('',[Validators.required])
+    this.type=new FormControl('',[Validators.required])
     this.admin=new FormControl('',[Validators.required])
     this.ca=new FormControl('',[Validators.required])
     this.ua=new FormControl('',[Validators.required])
@@ -39,6 +41,7 @@ export class ValidAdd {
       'password':this.password,
       'admin':this.admin,
       'emu':this.emu,
+      'type':this.type,
       'ca':this.ca,
       'ua':this.ua
     })

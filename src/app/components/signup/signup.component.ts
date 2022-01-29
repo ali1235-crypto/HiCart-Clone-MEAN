@@ -1,3 +1,6 @@
+import { CompareList } from './../../models/CompareList';
+import { CompareserviceService } from './../../services/compareservice.service';
+import { CartserviceService } from './../../services/cartservice.service';
 import { Component, OnInit } from '@angular/core';
 import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
 import { User } from 'src/app/models/User';
@@ -10,6 +13,9 @@ import {
   FacebookLoginProvider
 } from 'angularx-social-login';
 import { Router } from '@angular/router';
+import { WishlistserviceService } from 'src/app/services/wishlistservice.service';
+import { WishList } from 'src/app/models/WishList';
+import { CartList } from 'src/app/models/CartList';
 
 
 @Component({
@@ -34,7 +40,9 @@ export class SignupComponent implements OnInit {
 
   user: SocialUser=new SocialUser;
   loggedIn=false
-  constructor(private auth:AuthServiceService,private authService: SocialAuthService,private route:Router) { this.date_array_fct()}
+  typeuser='Email'
+  constructor(private auth:AuthServiceService,private authService: SocialAuthService,private router:Router
+    ,private wishservice:WishlistserviceService,private cartservice:CartserviceService,private compareservice:CompareserviceService) { this.date_array_fct()}
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
@@ -47,6 +55,7 @@ export class SignupComponent implements OnInit {
         this.v.email.setValue(this.user.email)
         this.v.password.setValue(this.user.id+";;##@@.."+this.user.email+this.user.firstName)
         this.v.confirmpassword.setValue(this.user.id+";;##@@.."+this.user.email+this.user.firstName)
+        this.typeuser='Google'
       }
       console.log(this.user)
     });
@@ -77,12 +86,19 @@ Register(){
     reg.gender=this.v.gender.value
     reg.emsubscribe=this.v.accept.value
     reg.mobilenumber=this.v.phone.value
+    reg.type=this.typeuser
 
     const d=new Date(this.v.dateyear.value,this.v.datemonth.value,this.v.dateday.value)
     reg.dateofbirth=this.v.dateyear.value+"-"+this.v.datemonth.value+"-"+this.v.dateday.value
     this.auth.Register(reg).subscribe(res=>{
       console.log(res);
-      this.route.navigate([{outlets:{primary:'profile',nav:'nav'}}])
+      location.reload()
+      localStorage.setItem('token',res.accesToken)
+      this.router.routeReuseStrategy.shouldReuseRoute=()=>false
+      this.router.onSameUrlNavigation='reload'
+      setTimeout(() => {
+        this.router.navigate([{outlets:{primary:'profile',nav:'nav'}}])
+      }, 200);
     },err=>{
       console.log(err);
     })

@@ -10,11 +10,10 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private lastlocalstorage=""
 
   jwthelper=new JwtHelperService()
-  token={headers:{
-    token:localStorage.getItem('token') as string || ""
-  }}
+
 
   constructor(private http:HttpClient) {
 
@@ -26,13 +25,31 @@ export class AuthServiceService {
   Register(reg:User):Observable<any>{
     return this.http.post('http://localhost:3000/api/auth/register',reg)
   }
-  bla():Observable<any>{
-    return this.http.get('http://localhost:3000/api/users/61a40c33b36ecd7204c84a98',this.token)
+  checkPassword(id:string,currentpass:string):Observable<any>{
+    console.log(currentpass);
+    return this.http.get('http://localhost:3000/api/auth/checkpassword/'+id+'/'+currentpass+'"')
   }
-isAdmin(){
-  console.log(this.jwthelper.decodeToken(localStorage.getItem('token') as string))
+isLoggedIn(){
+  if(!!localStorage.getItem('token')){
+    if(!this.jwthelper.isTokenExpired(localStorage.getItem('token') as string)&&this.jwthelper.decodeToken(localStorage.getItem('token') as string)){
+     return true
+    }
+    else{
+      return false
+    }
+  }
+  return false
 }
-  Google():Observable<any>{
-    return this.http.get('http://localhost:3000/api/auth/auth/google')
+getId(){
+  if(this.isLoggedIn()){
+    return this.jwthelper.decodeToken(localStorage.getItem('token') as string).id
   }
+}
+saveLastLocalStorage(){
+  if(!!localStorage.getItem('token'))
+  this.lastlocalstorage=localStorage.getItem('token') as string
+}
+getToken(){
+  return localStorage.getItem('token')
+}
 }

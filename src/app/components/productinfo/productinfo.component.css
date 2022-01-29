@@ -1,10 +1,10 @@
-section {
+.sectionPrInfo {
   padding: 15px 33px;
 }
 ul {
   list-style: none;
 }
-a {
+.sectionPrInfo a {
   color: black;
   text-decoration: none;
 }
@@ -52,6 +52,7 @@ a {
   height: 100%;
   position: relative;
   display: flex;
+  transition: left 0.3s;
 }
 #img img {
   height: 100%;
@@ -163,12 +164,12 @@ a {
   text-align: center;
 }
 
-.products {
+.products1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.products .product-item {
+.products1 .product-item {
   margin-right: 6px;
   margin-bottom: 20px;
   border-radius: 6px;
@@ -176,29 +177,29 @@ a {
   border: 1px solid #dfd2d2;
   box-shadow: 1px 1px #dfd2d2;
 }
-.products .product-item .product-image {
+.products1 .product-item .product-image {
   display: flex;
   justify-content: center;
   padding: 16px;
 }
-.products .product-item .product-image img {
+.products1 .product-item .product-image img {
   width: 279px;
   height: 279px;
 }
-.products .product-item h3 {
+.products1 .product-item h3 {
   text-align: center;
   color: #3c9ad5;
   font-size: 17px;
 }
-.products .product-item .product-icons {
+.products1 .product-item .product-icons {
   text-align: center;
   margin: 20px 0;
 }
-.products .product-item .product-icons fa-icon {
+.products1 .product-item .product-icons fa-icon {
   margin-left: 10px;
   color: #3c9ad5;
 }
-.products .product-item .ratestar fa-icon {
+.products1 .product-item .ratestar fa-icon {
   text-align: center;
   color: #a59c9c;
   font-size: 11px;

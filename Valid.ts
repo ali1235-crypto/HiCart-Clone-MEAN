@@ -28,7 +28,7 @@ export class Valid {
     this.email=new FormControl('',[Validators.required,Validators.email]);
     this.password=new FormControl('',[Validators.required,Validators.pattern(/[a-zA-z0-9.-]/g)]);
     this.confirmpassword=new FormControl('',[Validators.required])
-    this.accept=new FormControl('')
+    this.accept=new FormControl(false)
   this.form=new FormGroup({
       'first':this.firstname,
       'last':this.lastname,

@@ -1,0 +1,83 @@
+<section class="shopcart">
+  <div class="title"><h1>SHOPPING CART</h1></div>
+  <div class="btns">
+    <button style="width: 178px;">CONTINUE SHOPPING</button>
+    <button style="margin-left: 10px;
+    width: 200px;">PROCEED TO CHECKOUT</button>
+  </div>
+  <div class="child">
+    <div class="columns" style="height: 48px;">
+      <div style="width: 640px;background-color: #f5f5f5;">PRODUCT</div>
+      <div style="width: 192px;background-color: #f5f5f5;">PRICE
+      </div>
+      <div style="width: 200px;background-color: #f5f5f5;">QTY</div>
+      <div style="width: 190px;background-color: #f5f5f5;">SUBTOTAL</div>
+      <div style="width: 75px;background-color: #f5f5f5;"></div>
+    </div>
+    <div class="columns">
+      <div style="width: 640px;" class="product">
+        <img style="width: 106.45px;height: 106.45px;" src="https://media.hicart.com/catalog/product/cache/1/thumbnail/180x/9df78eab33525d08d6e5fb8d27136e95/n/o/nokia-g10-d-87aefb.jpg"/>
+        <div class="product-info">
+          <h2><a>Nokia, G10, 4Gb/64Gb, 6.52 Inch 1 Year Warranty</a></h2>
+          <span style="margin-bottom: 10px;color: #333;">SKU: <span style="color: gray;">Nokia-G10-DUSK</span></span>
+          <span style="color: gray;">By <span style="color:#333">Easy Systems & Information</span></span>
+        </div>
+      </div>
+      <div style="width: 192px;" class="price-subtotal">
+        <span>LBP 2,926,400</span>
+      </div>
+      <div style="width: 200px;padding-top: 22px;" class="qty">
+        <input value="1" type="number" (click)="update=!update" />
+        <button style="width: 90px;" *ngIf="update">Update</button>
+        <a >Configure Product</a>
+        <a style="margin-bottom: 15px;">Move to Wishlist</a>
+      </div>
+      <div style="width: 192px;" class="price-subtotal">
+        <span>LBP 2,926,400</span>
+      </div>
+      <div style="width: 75px;position: relative;" class="delete">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </div>
+    </div>
+    <div class="columns" style="padding: 10px 15px;
+    border-bottom: 1px solid #f1e4e4;
+    border-right: 1px solid #f1e4e4;">
+      <div class="deleteall" title="EMPTY CART">
+        <fa-icon [icon]="faTrash"></fa-icon>
+        <span>EMPTY CART</span>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="coupon">
+        <span>COUPN CODE</span>
+        <input style="width: 108px;height: 32px;" />
+        <button style="width: 80px;height: 32px;" (click)="''">APPLY</button>
+      </div>
+    </div>
+    <div class="columns">
+      <div style="width: 100%;padding:25px 40px;justify-content: flex-end;">
+        <div class="pay-info">
+          <div style="padding-top: 22px;">
+            <span>SUBTOTAL</span>
+            <span>LBP 3,876,400</span>
+          </div>
+          <div style="border-bottom: 1px solid #f1e4e4;padding-bottom: 22px;">
+            <span>SHIPPING & HANDLING FEES(DELIVERY)</span>
+            <span style="font-size: 12px;">To be determined</span>
+          </div>
+          <div style="border-bottom: 1px solid #f1e4e4;">
+            <span style="font-size: 18px;">GRAND TOTAL</span>
+            <span style="font-size:33px;color: #3c9ad5;width: 160px;padding: 22px 0px;line-height: 55px;">LBP 3,876,400</span>
+          </div>
+          <div style="justify-content: flex-end;padding: 22px 0px;">
+            <span style="font-size: 20px;
+            width: auto;color: #8b8b8b;">Prices include VAT</span>
+          </div>
+          <div style="justify-content: flex-end;padding: 22px 0px;">
+            <button class="btn-chk">PROCEED TO CHECKOUT<fa-icon [icon]="faShare"></fa-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

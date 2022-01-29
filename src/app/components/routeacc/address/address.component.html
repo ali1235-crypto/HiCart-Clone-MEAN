@@ -1,61 +1,61 @@
 <h1 style="font-weight: bold;margin-bottom: 72px;color: #333;">ADD NEW ADDRESS
 </h1>
-<form>
+<form [formGroup]="v.form">
   <div class="child">
     <h3>CONTACT INFORMATION</h3>
       <div>
         <p>FIRSTNAME<span style="color:red">*</span></p>
-        <input type="text" />
+        <input type="text" formControlName="first" [ngClass]="{'error':v.firstname.invalid}"/>
       </div>
       <div>
         <p>LASTNAME<span style="color:red">*</span></p>
-        <input type="text" />
+        <input type="text" formControlName="last" [ngClass]="{'error':v.lastname.invalid}"/>
       </div>
       <div>
         <p>Company</p>
-        <input type="text" />
+        <input type="text" formControlName="company" [ngClass]="{'error':v.company.invalid}"/>
       </div>
       <div>
         <p>Telephone<span style="color:red">*</span></p>
-        <input type="text" />
+        <input type="text" formControlName="telephone" [ngClass]="{'error':v.telephone.invalid}"/>
       </div>
       <div>
         <p>FAX</p>
-        <input type="text" />
+        <input type="text" formControlName="fax" [ngClass]="{'error':v.fax.invalid}"/>
       </div>
   </div>
   <div class="child">
     <h3>ADDRESS</h3>
       <div>
         <p>STREET NAME/NO.<span style="color:red">*</span></p>
-        <input type="text" style="margin-bottom: 10px;"/>
-        <input type="text" />
+        <input type="text" style="margin-bottom: 10px;" formControlName="streetnameno1" [ngClass]="{'error':v.streetnameno1.invalid}"/>
+        <input type="text" formControlName="streetnameno2" [ngClass]="{'error':v.streetnameno2.invalid}"/>
       </div>
       <div>
         <p>STATE/PROVINCE<span style="color:red">*</span></p>
-        <input type="text" />
+        <input type="text" formControlName="stateprovince" [ngClass]="{'error':v.stateprovince.invalid}"/>
       </div>
       <div>
         <p>CITY<span style="color:red">*</span></p>
-        <select>
+        <select formControlName="city" [ngClass]="{'error':v.city.invalid}">
           <option value="">Please select region, state or province</option><option value="485">Akkar</option><option value="486">Aley</option><option value="487">Baabda</option><option value="488">Baalbeck</option><option value="489">Batroun</option><option value="490">Bcharre</option><option value="491">Beirut</option><option value="492">Bekaa</option><option value="493">Bint Jbail</option><option value="494">Chouf</option><option value="495">Danniyeh</option><option value="496">Hasbayya</option><option value="497">Hermel</option><option value="498">Jbeil</option><option value="499">Jezzine</option><option value="500">Kesserwan</option><option value="501">Koura</option><option value="502">Marjayoun</option><option value="503">Maten</option><option value="504">Nabatiyeh</option><option value="505">Rachaiya</option><option value="506">Sidon</option><option value="507">Tripoli</option><option value="508">Tyre</option><option value="509">Zahle</option><option value="510">Zgharta</option></select>
       </div>
       <div>
         <p>ZIP/POSTAL CODE</p>
-        <input type="text" />
+        <input type="text" formControlName="zip" [ngClass]="{'error':v.zip.invalid}"/>
       </div>
       <div>
         <p>COUNTRY<span style="color:red">*</span></p>
-        <select>
+        <select formControlName="country" [ngClass]="{'error':v.country.invalid}">
           <option></option>
           <option>Lebanon</option>
         </select>
       </div>
       <div>
         <p>ADDRESS NICKNAME<span style="color:red">*</span></p>
-        <input type="text" />
+        <input type="text" formControlName="addressnickname" [ngClass]="{'error':v.addressnickname.invalid}"/>
       </div>
-      <button>Save Address</button>
+      <button (click)="save()">Save Address</button>
   </div>
   <div class="save-back">
     <a href="">Back</a>

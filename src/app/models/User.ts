@@ -8,7 +8,23 @@ export class User{
   dateofbirth!:string
   mobilenumber!:string
   emsubscribe!:Boolean
+  type!:string
   isAdmin!:boolean
+  addresscontact!:{
+    firstname:string
+    lastname:string
+    company:string
+    telephone:string
+    fax:string
+  }
+  addresshipping!:{
+    streetnameno:string
+    stateprovince:string
+    city:string
+    zip:string
+    country:string
+    addressnickname:string
+  }
   createdAt!:Date
   updatedAt!:Date
 }

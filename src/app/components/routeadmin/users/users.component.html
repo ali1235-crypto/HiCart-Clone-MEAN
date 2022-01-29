@@ -1,4 +1,4 @@
-<h2 style="padding: 8px;font-size: 28px;text-decoration: underline;">User Info{{v.lastname.valid}}</h2>
+<h2 style="padding: 8px;font-size: 28px;text-decoration: underline;">User Info</h2>
 <div class="info">
   <form [formGroup]="v.form">
     <div >
@@ -30,12 +30,16 @@
       <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="admin"/>
     </div>
     <div >
-      <span>Password : </span>
+      <span>Pass Encrypted : </span>
       <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="password"/>
     </div>
     <div >
       <span>Email Subscribe : </span>
       <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="emu"/>
+    </div>
+    <div >
+      <span>Type : </span>
+      <input [ngClass]="{'a': !readonly}"  [readonly]="readonly" formControlName="type"/>
     </div>
     <div >
       <span>Created At : </span>

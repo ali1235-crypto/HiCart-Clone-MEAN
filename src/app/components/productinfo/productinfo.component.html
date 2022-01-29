@@ -1,11 +1,11 @@
-<section>
+<section class="sectionPrInfo">
   <div class="path">
     <ul><li><fa-icon [icon]="faHouseDamage"></fa-icon></li><li><a [routerLink]="" style="color: #3c9ad5;">Electronics</a></li><li>Eufy, Solo Out doorCam C24 2K</li></ul>
   </div>
   <div class="product-info">
     <div class="product-imgs">
       <div class="list-imgs">
-        <ul><li *ngFor="let img of product.imgs"><img class="hover" [src]="img"/></li></ul>
+        <ul><li *ngFor="let img of product.imgs;let i=index"><img class="hover" [src]="img" (click)="animateBannerImg(i)"/></li></ul>
       </div>
       <div id="img">
         <figure>
@@ -19,11 +19,11 @@
       <div class="btns-buy-addcart">
         <div class="input-number">
           <div class="faicon"><fa-icon [icon]="faPlus" (click)="inp.value=(+inp.value+1).toString()"></fa-icon></div>
-          <input  style="width: 40px;height: 30px;text-align: center;" #inp/>
+          <input  style="width: 40px;height: 30px;text-align: center;" #inp value="1"/>
           <div class="faicon"><fa-icon [icon]="faMinus" (click)="inp.value=(+inp.value-1).toString()"></fa-icon></div>
         </div>
-        <button style="width: 163px;background-color: #3c9ad5;">ADD TO CART</button>
-        <button style="width: 173px;background-color: #20b82e;">BUY NOW</button>
+        <button style="width: 163px;background-color: #3c9ad5;" (click)="updateCartById(product._id)">ADD TO CART</button>
+        <button style="width: 173px;background-color: #20b82e;" (click)="addOrder(+inp.value,product)">BUY NOW</button>
       </div>
       <div class="product-stoke-others">
         <div>
@@ -70,7 +70,7 @@
       <div class="also-title">
         <h1>YOU MIGHT BE ALSO INTERESTED IN</h1>
       </div>
-      <div class="products">
+      <div class="products1">
         <div class="product-item" *ngFor="let i of [1,2,3,4,5,6,7,8]">
           <div class="product-image">
             <img src="" />

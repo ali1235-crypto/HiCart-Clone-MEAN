@@ -1,5 +1,6 @@
+import { CategoryServiceService } from './../../services/category-service.service';
 import { ProductServiceService } from './../../services/product-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { faHouseDamage, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -50,15 +51,27 @@ export class ListesProductsComponent implements OnInit {
   range1='75'
   range2='10'
 
-  constructor(private Routed:ActivatedRoute,private products:ProductServiceService) { }
+  constructor(private Routed:ActivatedRoute,private products:ProductServiceService,private router:Router,private categoryservice:CategoryServiceService) { }
 
   ngOnInit(): void {
     this.Routed.params.subscribe(res=>{
       if(res.category){
         this.category=res.category
+        this.categoryservice.getCategories('',this.category).subscribe(res=>{
+
+        },err=>{
+          console.log(err);
+          this.router.navigate([{outlets:{primary:'home',nav:'nav'}}])
+        })
       }
       if(res.subcategory){
         this.subcategory=res.subcategory
+        this.categoryservice.getCategories('',this.subcategory).subscribe(res=>{
+
+        },err=>{
+          console.log(err);
+          this.router.navigate([{outlets:{primary:'home',nav:'nav'}}])
+        })
         if(!res.subbcategory){
           this.getProductsByCategory(this.subcategory,this.page,this.limit,this.fieldname,this.sort)
         }
@@ -66,11 +79,15 @@ export class ListesProductsComponent implements OnInit {
       }
       if(res.subbcategory){
         this.subbcategory=res.subbcategory
+        this.categoryservice.getCategories(this.subbcategory).subscribe(res=>{
+
+        },err=>{
+          console.log(err);
+          this.router.navigate([{outlets:{primary:'home',nav:'nav'}}])
+        })
         this.getProductsByCategory(this.subbcategory,this.page,this.limit,this.fieldname,this.sort)
       }
     })
-
-
   }
 
   changeIcon(i:number):IconDefinition{
@@ -143,7 +160,29 @@ export class ListesProductsComponent implements OnInit {
     }
     range(){
       const field=document.getElementsByClassName('field') as HTMLCollectionOf<HTMLElement>
+      const slider=document.querySelectorAll<HTMLElement>('input[type="range"]::-webkit-slider-thumb')
       field[0].style.left=this.range2+"%"
       field[0].style.right=100-parseInt(this.range1)+"%"
+      if(slider[0]){
+        //if(parseInt(slider[0].style.left)==parseInt(slider[0].style.left)-1){
+          console.log('object');
+        //}
+      }
     }
+
+
+
+  styleprice(discount:number){
+    if(discount){
+      console.log(discount);
+      return 'text-decoration: line-through;color: #a59c9c;'
+    }
+    else{
+      console.log(discount);
+      return 'margin-bottom: 44px;'
+    }
+  }
+  routePproductId(id:string){
+    this.router.navigate(['/product/'+id])
+  }
 }

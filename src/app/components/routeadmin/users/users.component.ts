@@ -44,6 +44,7 @@ export class UsersComponent implements OnInit {
     this.v.gender.setValue(us.gender)
     this.v.password.setValue(us.password)
     this.v.emu.setValue(us.emsubscribe)
+    this.v.type.setValue(us.type)
     this.v.admin.setValue(us.isAdmin)
     this.v.phone.setValue(us.mobilenumber)
     this.v.ua.setValue(us.updatedAt)
@@ -82,6 +83,7 @@ export class UsersComponent implements OnInit {
     uss.gender=this.v.gender.value
     uss.password=this.v.password.value
     uss.emsubscribe=this.v.emu.value
+    uss.type=this.v.type.value
     uss.isAdmin=this.v.admin.value
     uss.mobilenumber=this.v.phone.value
     uss.dateofbirth=this.v.date.value

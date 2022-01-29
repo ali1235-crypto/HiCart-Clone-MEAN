@@ -1,40 +1,47 @@
 
 <section class="banners">
-  <figure appAnimationContol>
-    <img *ngFor="let banner of banners;let i=index" [src]="'../assets/'+banner" style="height: 183px;" />
+  <figure>
+    <img *ngFor="let banner of banners;let i=index" [src]="banner.path" [title]="banner.title" style="height: 183px;width: 1349px;" />
   </figure>
   <div style="width: 100%;" class="banners-routing">
-  <span (click)="''" ></span><span (click)="''" ></span><span (click)="''" ></span>
-
-</div>
+    <span *ngFor="let sp of [].constructor(lengthimgfigure);let i=index" (click)="animateBannerImg(i)"></span>
+  </div>
 </section>
 <section class="offers">
 <div class="offer-item" *ngFor="let img of offers" >
-  <a routerLink="h" style="display: inline-block;"><img [src]="'../assets/offers/'+img" style="width: 100%;"/></a>
+  <a routerLink="h" style="display: inline-block;"><img [src]="img.path" [title]="img.title" style="width: 100%;"/></a>
 </div>
 </section>
-<section class="catchofday" *ngFor="let title of titlep">
-<div class="titlec">
-  <h3><span>{{title}}</span> </h3>
-</div>
-<div class="products">
-  <div class="product-item" *ngFor="let i of [1,2,3,4,1,2,3,4,1,2,3,4,1,2]">
-    <div class="product-image">
-      <img src="" />
+<section class="titleofproducts" *ngFor="let title of titlep;let i = index" (mousedown)="animateEnter($event,i)" (mouseup)="animateEnterup(i)">
+  <div style="  left: 4px;" (click)="prevButton2(i)" class="arrow">
+      <span style="transform: rotate(-45deg);"></span>
     </div>
-    <div class="ratestar" style="text-align: center;">
-      <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
-    </div>
-    <h3>Lenovo,HD300 Bluetooth Wireless</h3>
-    <div class="product-price" style="color: #3c9ad5;text-align: center;">
-      <p style="margin-bottom:4px;">238,000 LBP</p>
-      <p style="text-decoration: line-through;color: #a59c9c;">400,000 LBP</p>
-    </div>
-    <div class="product-icons">
-      <fa-icon [icon]="faShoppingCart"></fa-icon>
-      <fa-icon [icon]="faHeart"></fa-icon>
-      <fa-icon [icon]="faBalanceScale"></fa-icon>
+  <div class="titlec">
+    <h3><span>{{title}}</span> </h3>
+  </div>
+  <div class="parentproducts" style="overflow: hidden;"  >
+    <div class="products">
+      <div class="product-item" *ngFor="let product of products[i]">
+        <div class="product-image">
+          <img [src]="product.img" />
+        </div>
+        <div class="ratestar" style="text-align: center;">
+          <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
+        </div>
+        <h3 (click)="routeProductId(product._id)">{{product.title}}</h3>
+        <div class="product-price" style="color: #3c9ad5;text-align: center;">
+          <p style="margin-bottom:4px;" *ngIf="product.discount">{{product.price*(100-product.discount)/100 +" LBP"}}</p>
+          <p  [style]="styleprice(product.discount)">{{product.price +" LBP"}}</p>
+        </div>
+        <div class="product-icons">
+          <fa-icon [icon]="faShoppingCart" (click)="addCartWishCompare(product._id,'cart')"></fa-icon>
+            <fa-icon [icon]="faHeart" (click)="addCartWishCompare(product._id,'wish')"></fa-icon>
+            <fa-icon [icon]="faBalanceScale" (click)="addCartWishCompare(product._id,'compare')"></fa-icon>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+  <div style="  right: 4px;padding-right: 8px;" (click)="nextButton2(i)" class="arrow">
+    <span style="transform: rotate(135deg);"></span>
+  </div>
 </section>

@@ -10,7 +10,7 @@ export class Product{
   imgs!:[string]
   size!:string
   soldby!:string
-  category!:Category
+  category!:Category[]
   availability!:boolean
   capacity!:string
   type!:string

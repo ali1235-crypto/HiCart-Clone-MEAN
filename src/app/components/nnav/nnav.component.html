@@ -27,30 +27,30 @@
     </div>
     <div class="info">
       <ul style="font-size: 12px;">
-        <li id="welcome"><a>Welcome to AliEc</a></li>
+        <li [id]="isLoggedIn()?'':'welcome'"><div *ngIf="isLoggedIn()"><img style="margin-right: 9px;" src="https://media.hicart.com/images/default/hi-white-icon1.png"/><span >{{nav.nameuser}}</span></div><a *ngIf="!isLoggedIn()">Welcome to AliEc</a></li>
         <li>Checkout</li>
-        <li style="display: flex;align-items: center;" (click)="classReference.openlogin=true">Log In <fa-icon [icon]="faSignInAlt" style="font-size: 18px;margin-left: 8px;"></fa-icon></li>
+        <li style="display: flex;align-items: center;" (click)="LoginLogout()">{{!isLoggedIn() ?'Log In ':'Log Out '}}<fa-icon [icon]="faSignInAlt" style="font-size: 18px;margin-left: 8px;"></fa-icon></li>
       </ul>
     </div>
   </div>
   <div class="nav-body">
-    <div class="title">
+    <div class="title" (click)="routeToHome()">
       <p style="color: white;" >Ali<span style="color: #3c9ad5;">Cart</span></p>
     </div>
     <div class="search">
-      <input placeholder="Search for products,categories ..." />
+      <input placeholder="Search for products,categories ..." (input)="seacrch($event)" #inp/>
     </div>
     <div class="productitem">
-      <div class="item">
-        <span class="raduis">0</span>
+      <div class="item" (click)="openwish=!openwish;animatewish()" >
+        <span class="raduis">{{nav.heart}}</span>
         <span class="spicon"><fa-icon [icon]="faHeart" class="padd3"></fa-icon> WISHLIST</span>
       </div>
-      <div class="item">
-        <span class="raduis">0</span>
+      <div class="item" (click)="opencompare=!opencompare;animatecompare()">
+        <span class="raduis">{{nav.compare}}</span>
         <span class="spicon"><fa-icon [icon]="faBalanceScale" class="padd3"></fa-icon>COMPARE</span>
       </div>
-      <div class="item">
-        <span class="raduis">0</span>
+      <div class="item" (click)="opencart=!opencart;animatecart()">
+        <span class="raduis">{{nav.cart}}</span>
         <span class="spicon"><fa-icon [icon]="faShoppingCart" class="padd3"></fa-icon>CART</span>
       </div>
     </div>
@@ -61,11 +61,143 @@
       <li *ngFor="let category of categroies;let i=index" class="licategories"  (mouseleave)="hover[i]=true;divhover=false;" (mouseover)="hover[i]=false;divhover=true;ind=0"><a  [ngClass]="{'aa':hover[i]}" (click)="routeProducts(category.path)">{{category.name}}</a></li>
     </ul>
     <div class="div-category" [ngClass]="{'div-category-hover':divhover}" (mouseleave)="divhover=false" (mouseover)="divhover=true;">
-      <div class="products-category" *ngFor="let category of categroies[ind].childId" style="margin: 20px;">
+      <div class="products-category" *ngFor="let category of categroies[ind].childsId" style="margin: 20px;">
         <h4 style="font-weight: bold;" (click)="routeProducts(category.path)">{{category.name}}</h4>
-          <p *ngFor="let c of category.childId"><a routerLink="" (click)="routeProducts(c.path)">{{c.name}}</a></p>
+          <p *ngFor="let c of category.childsId"><a routerLink="" (click)="routeProducts(c.path)">{{c.name}}</a></p>
 
       </div>
+    </div>
+  </div>
+  <div class="wishcompareliste"  >
+    <div style="margin: 35px 20px 20px;">
+      <div *ngIf="isLoggedIn()">
+        <div class="wishcomparecartitem" *ngFor="let wsh of productswish">
+          <img [src]="wsh.productid.img" />
+          <a>{{wsh.productid.title}}</a>
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </div>
+        <div>
+          <button style="margin: 30px 0px 5px;">GO TO WISHLIST</button>
+        </div>
+      </div>
+      <fa-icon [icon]="faTimesCircle"></fa-icon>
+      <p *ngIf="!isLoggedIn()" style="margin-top: 20px;color: gray;">You have no items in your compare.</p>
+    </div>
+  </div>
+  <div class="wishcompareliste" style="right: 70px;">
+    <div style="margin: 35px 20px 20px;">
+      <div *ngIf="isLoggedIn()">
+        <div class="wishcomparecartitem" *ngFor="let pr of productscompare">
+          <img [src]="pr.productid.img" />
+          <a>{{pr.productid.title}}</a>
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </div>
+        <div>
+          <button style="margin: 35px 0px 15px;">COMPARE</button>
+          <button>CLEAR ALL</button>
+        </div>
+      </div>
+      <fa-icon [icon]="faTimesCircle"></fa-icon>
+      <p *ngIf="!isLoggedIn()" style="margin-top: 20px;color: gray;">You have no items in your wishlist.</p>
+    </div>
+  </div>
+  <div class="cartliste" >
+    <div>
+      <h1 style="text-align: center;
+      font-weight: 700;
+      color: #333;
+      line-height: 1.182;">RECENTLY ADDED ITEM(S)</h1>
+    </div>
+    <div *ngIf="isLoggedIn()">
+      <div class="wishcomparecartitem" style="align-items: center;position: relative;" *ngFor="let pr of productscart">
+        <img [src]="pr.productid.img" />
+        <a style="margin-right: 76px;">{{pr.productid.title}}</a>
+        <div class="qty">
+          <span style="margin-right: 8px;">Qty</span>
+          <input [value]="pr.qty"/>
+          <button *ngIf="openok" id="ok">OK</button>
+        </div>
+        <div class="price">
+          <span>Price</span>
+          <span style="margin: 0px 8px;
+          font-size: 26px;margin-bottom: 5px;">LBP {{pr.productid.price}}</span>
+        </div>
+        <fa-icon [icon]="faPencilAlt" style="position: absolute;
+        left: 561px;
+        top: 55px;
+        font-size: 17px;" (click)="openok=!openok"></fa-icon>
+        <fa-icon [icon]="faTimesCircleReg"></fa-icon>
+      </div>
+      <div class="totalprice">
+        <span style="font-weight: 500;
+        color: #333;">Cart Subtotal (Excluding Shipping & Handling Fees):</span>
+        <span style="color: #3c9ad5;">LBP 3,459,600</span>
+      </div>
+      <div class="btns">
+        <button>VIEW SHOPPING CART</button>
+        <button>CHECKOUT</button>
+      </div>
+    </div>
+    <fa-icon [icon]="faTimesCircle" style="    top: 18px;
+      right: 20px;"></fa-icon>
+    <p *ngIf="!isLoggedIn()" style="margin-top: 20px;color: gray;">You have no items in your shopping cart.</p>
+  </div>
+  <div class="parentsr" *ngIf="opensearchresult" [style.height]="fullheight">
+    <div class="searchresult" *ngIf="productssearch.length!=0">
+      <div class="result-item" *ngFor="let pr of productssearch">
+        <img [src]="pr.img"/>
+        <div>
+          <p style="font-size: 15px;" [innerHtml]="getInnerHtml(pr.title,inp.value)">{{pr.title}}</p>
+          <p style="font-size: 10px;" [innerHtml]="getInnerHtml(filterCategory(pr.category[0].path),inp.value)">{{filterCategory(pr.category[0].path)}}</p>
+          <p style="font-size: 18px;color: #3c9ad5;">LBP {{pr.price}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="searchresult" *ngIf="productssearch.length==0">
+      Products Not Found
+    </div>
+  </div>
+  <div class="login" *ngIf="openlogin">
+    <div class="opa" [style.height]="fullheight">
+      <div class="divvlogin">
+        <div class="divlogin">
+          <div>
+            <p style="border-bottom: 1px dotted;margin-bottom: 20px;">LOGIN</p>
+            <form [formGroup]="v.form">
+            <div class="logininfo">
+              <span class="option">EMAIL ADRESS <span style="color: red;font-size: 20px;">*</span></span><input class="option" formControlName="email"/>
+            </div>
+            <div class="logininfo">
+              <span class="option">PASSWORD <span style="color: red;font-size: 20px;">*</span></span><input class="option" formControlName="password"/>
+            </div>
+            <div style="display: flex;justify-content: flex-end;display: flex;justify-content: flex-end;margin-bottom: 35px;">
+              <div style="width: 50%;">
+                <a routerLink="" style="vertical-align: top;
+                font-size: 12px;
+                margin-right: 21px;">Forget Password?</a>
+              <button style="padding: 10px 30px;color: white;background-color: #3c9ad5;border: 0;border-radius: 5px;" (click)="Login()">LOGIN</button>
+              </div>
+            </div>
+            </form>
+          </div>
+          <div class="signup">
+            <span>Don't have an account? <a [routerLink]="[{outlets:{primary:'join',nav:'joinnav'}}]" (click)="openlogin=false">Join AliCart Now!</a></span>
+          </div>
+        </div>
+        <div class="or">
+          OR
+        </div>
+        <div class="siginwith">
+          <p style="border-bottom: 1px dotted;margin-bottom: 20px;">SIGN IN WITH</p>
+          <div class="btns">
+            <button style="background-color: #5475bc;">Facebook</button>
+            <button style="background-color: #de4f3e;" (click)="signInWithGoogle()">Google+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="close" (click)="openlogin=false">
+      X
     </div>
   </div>
 </nav>
