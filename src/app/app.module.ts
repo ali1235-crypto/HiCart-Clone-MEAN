@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
-import { AnimationContolDirective } from './directives/animation-contol.directive';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
@@ -45,7 +44,6 @@ import { SubscComponent } from './components/routeacc/subsc/subsc.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AnimationContolDirective,
     SignupComponent,
     NnavComponent,
     HomeComponent,

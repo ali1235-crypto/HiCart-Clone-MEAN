@@ -14,13 +14,16 @@ export class CartserviceService {
   addCartList(cart:CartList):Observable<CartList>{
     return this.http.post<CartList>('http://localhost:3000/api/cartlists',cart)
   }
-  updateCartList(iduser:string,ob:{}):Observable<CartList>{
-    return this.http.put<CartList>('http://localhost:3000/api/cartlists/update/'+iduser,ob)
+  updateCartList(iduser:string,ob:{},index:number):Observable<CartList>{
+    return this.http.put<CartList>('http://localhost:3000/api/cartlists/update/'+iduser+"?index="+index,ob)
   }
   updateCartListbyProductId(iduser:string,prid:string):Observable<CartList>{
     return this.http.put<CartList>('http://localhost:3000/api/cartlists/'+iduser,{productid:prid})
   }
   getnbofcarts(iduser:string):Observable<any>{
     return this.http.get('http://localhost:3000/api/cartlists/'+iduser+"/nbofcarts")
+  }
+  delete(iduser:string):Observable<CartList>{
+    return this.http.delete<CartList>('http://localhost:3000/api/cartlists/'+iduser)
   }
 }

@@ -40,7 +40,7 @@ export class WhilelistComponent implements OnInit {
     })
   }
 
-  update(){
+  update(i:number){
     var info={}
     if(!this.qty.value){
       info={comment:this.comment.value}
@@ -52,7 +52,7 @@ export class WhilelistComponent implements OnInit {
     else{
       info={qty:this.qty.value,comment:this.comment.value}
     }
-    this.wishservice.updateWishList(this.auth.getId(),info).subscribe(res=>{
+    this.wishservice.updateWishList(this.auth.getId(),info,i).subscribe(res=>{
       console.log(res);
     },err=>{
       console.log(err);

@@ -19,6 +19,7 @@ export class ProductServiceService {
   getProductsByCategory(category:string,page:string='1',limit:string='20',fieldname:string='price',sort:string='1'):Observable<any>{
     return this.http.get<any>('http://localhost:3000/api/products?category='+category+"&page="+page+'&limit='+limit+'&fieldname='+fieldname+'&sort='+sort)
   }
+
   addProduct(product:Product){
     return this.http.post<Product>('http://localhost:3000/api/products',product)
   }

@@ -86,23 +86,27 @@ button:hover {
 .price-subtotal span {
   font-size: 24px;
 }
-.qty {
+.qtycart {
   width: 200px;
   padding-top: 22px;
   display: flex;
   font-size: 13px;
+  position: relative;
+  top: 12px;
+  height: 100%;
   flex-direction: column;
   justify-content: flex-start;
 }
-.qty button,
-.qty input {
+
+.qtycart button,
+.qtycart input {
   margin-bottom: 10px;
 }
-.qty a {
+.qtycart a {
   font-size: 15px;
   margin-bottom: 6px;
 }
-.qty input {
+.qtycart input {
   height: 30px;
   width: 80px;
   text-align: center;

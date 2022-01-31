@@ -17,6 +17,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { ProductServiceService } from 'src/app/services/product-service.service';
 import { Category } from 'src/app/models/category';
 import { WishlistserviceService } from 'src/app/services/wishlistservice.service';
+import { CartList } from 'src/app/models/CartList';
 
 
 @Component({
@@ -78,6 +79,9 @@ export class LitesProductsParentcategoryComponent implements OnInit {
           this.titlep.forEach((value,index)=>{
               this.productsservice.getProductsByCategory(value,'1','8').subscribe(res=>{
                 this.products[index]=res.products
+                setTimeout(() => {
+                  window.addEventListener("mousemove",(e)=>{this.sectionArrowMove(e,this.indexdiv)})
+                }, 200);
                 console.log(this.products[index]);
                 const productsClass=document.getElementsByClassName('products') as HTMLCollectionOf<HTMLElement>
                 if(productsClass[index])productsClass[index].style.width=209*this.products[index].length+6*(this.products[index].length-1)+"px"
@@ -97,7 +101,7 @@ export class LitesProductsParentcategoryComponent implements OnInit {
       window.addEventListener("mouseup", () => {
         this.isPressedDown = false;
       });
-      window.addEventListener("mousemove",(e)=>{this.sectionArrowMove(e,this.indexdiv)})
+
 
 
 
@@ -123,24 +127,24 @@ export class LitesProductsParentcategoryComponent implements OnInit {
       }
   }
   prevButton2(index:number){
-    const productsservice=document.getElementsByClassName('productsservice') as HTMLCollectionOf<HTMLElement>
-    const productsserviceitems=document.querySelectorAll('.productsservice .product-item')
-    if(productsservice){
-      console.log(productsserviceitems);
-        this.counter++
-        if(this.counter==1)this.counter=6-productsserviceitems.length/2
-        productsservice[index].style.left=this.counter*(215)+"px"
+    const products=document.getElementsByClassName('products') as HTMLCollectionOf<HTMLElement>
+    if(products){
+      products[index].style.transition="left 1s"
+      console.log(products);
+      this.counter++
+      if(this.counter==1)this.counter=6-products[index].childElementCount
+        products[index].style.left=this.counter*(215)+"px"
       }
   }
   nextButton2(index:number){
-    const productsservice=document.getElementsByClassName('productsservice') as HTMLCollectionOf<HTMLElement>
-    const productsserviceitems=document.querySelectorAll('.productsservice .product-item')
-      if(productsservice){console.log(productsservice);
-        this.counter--
-        if(-this.counter==productsserviceitems.length/2-5)this.counter=0
-        productsservice[index].style.left=this.counter*(215)+"px"
-
-      }}
+    const products=document.getElementsByClassName('products') as HTMLCollectionOf<HTMLElement>
+    if(products){
+      console.log(products);
+       this.counter--
+       if(this.counter==5-products[index].childElementCount)this.counter=0
+        products[index].style.left=this.counter*(215)+"px"
+      }
+    }
 
   startx=0
   isPressedDown=false
@@ -164,23 +168,29 @@ export class LitesProductsParentcategoryComponent implements OnInit {
     if(parentproductsservice[i])parentproductsservice[i].style.cursor='grab'
   }
   sectionArrowMove(e:any,i:number){
-    const products=document.getElementsByClassName('products') as HTMLCollectionOf<HTMLElement>
-    const productsservice_items=document.getElementsByClassName('product-item') as HTMLCollectionOf<HTMLElement>
+    var products=document.getElementsByClassName('products') as HTMLCollectionOf<HTMLElement>
+    var productsservice_items=document.getElementsByClassName('product-item') as HTMLCollectionOf<HTMLElement>
+
+
     if(products[this.indexdiv]&&productsservice_items){
       if (!this.isPressedDown) {
+       console.log(parseInt(window.getComputedStyle(products[this.indexdiv]).left))
         //console.log('kkk');
         this.lastpoint=0
-      if((parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=215&&parseInt(window.getComputedStyle(products[this.indexdiv]).left)>=0)||(parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=-((productsservice_items.length/products.length)-6)*215)){
-        if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=-(products[this.indexdiv].childElementCount-6)*215){
-          //console.log('object');
-          products[this.indexdiv].style.left=-(products[this.indexdiv].childElementCount-6)*215+'px'
+      if((parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=215&&parseInt(window.getComputedStyle(products[this.indexdiv]).left)>0)||(parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=-((products[this.indexdiv].childElementCount)-6)*215)){
+        console.log('objectjjj');
+        if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=-(this.products[this.indexdiv].length-6)*215){
+          console.log('llll',this.products[this.indexdiv].length-6);
+          products[this.indexdiv].style.left=-(this.products[this.indexdiv].length-6)*215+'px'
         }
         else{
+          console.log('oooopppp');
           products[this.indexdiv].style.left='0px'
         }
     }
     else if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)%215!=0){
       if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)>215){
+        console.log('ppxo');
         products[this.indexdiv].style.left="0px"
       }
       var reste=Math.round(parseInt(window.getComputedStyle(products[this.indexdiv]).left)/215)
@@ -191,13 +201,13 @@ export class LitesProductsParentcategoryComponent implements OnInit {
     }
       else{console.log('oooo');
         e.preventDefault();
-
-    if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=215&&parseInt(window.getComputedStyle(products[this.indexdiv]).left)>=-(products[this.indexdiv].childElementCount-5)*215){
+    products[this.indexdiv].style.transition="none"
+    if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)<=215&&parseInt(window.getComputedStyle(products[this.indexdiv]).left)>=-(this.products[this.indexdiv].length-5)*215){
 
       products[this.indexdiv].style.left = `${this.leftproducts+e.clientX-this.startx}px`;
       //console.log("1");
     }
-    else if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)>215&&this.lastpoint>e.clientX-this.startx||parseInt(window.getComputedStyle(products[this.indexdiv]).left)<-(products[this.indexdiv].childElementCount-5)*215&&this.lastpoint<e.clientX-this.startx){
+    else if(parseInt(window.getComputedStyle(products[this.indexdiv]).left)>215&&this.lastpoint>e.clientX-this.startx||parseInt(window.getComputedStyle(products[this.indexdiv]).left)<-(this.products[this.indexdiv].length-5)*215&&this.lastpoint<e.clientX-this.startx){
       if(this.lopp==0){
         this.leftproducts=parseInt(window.getComputedStyle(products[this.indexdiv]).left)
         this.startx=e.clientX
@@ -217,21 +227,22 @@ export class LitesProductsParentcategoryComponent implements OnInit {
 }
 
 
-addCartWishCompare(prid:string,title:string){
+addCartWishCompare(prid:string,title:string,index:number){
   if(this.authservice.isLoggedIn()){
     if(title=='cart'){
       if(NnavComponent.cart==0){
-        var wish=new WishList
-        wish.userid=this.authservice.getId()
-        wish.products=[{productid:prid as any,qty:1,comment:''}]
-        this.cartservice.addCartList(wish).subscribe(res=>{
+        var cart=new CartList
+        cart.userid=this.authservice.getId()
+        cart.products=[{productid:prid as any,qty:1,comment:''}]
+        this.cartservice.addCartList(cart).subscribe(res=>{
           console.log(res);
+          NnavComponent.cart=res.products.length
         },err=>{
           console.log(err);
         })
       }
       else{
-        this.cartservice.updateCartList(this.authservice.getId(),prid).subscribe(res=>{
+        this.cartservice.updateCartList(this.authservice.getId(),prid,index).subscribe(res=>{
           NnavComponent.cart=res.products.length
         },err=>{
           console.log(err);
@@ -246,18 +257,18 @@ addCartWishCompare(prid:string,title:string){
         compare.products=[{productid:prid as any,qty:1,comment:''}]
         this.compareservice.addCompareList(compare).subscribe(res=>{
           console.log(res);
-        },err=>{
-          console.log(err);
-        })
-      }
-      else{
-        this.compareservice.updateCompareList(this.authservice.getId(),prid).subscribe(res=>{
           NnavComponent.compare=res.products.length
         },err=>{
           console.log(err);
         })
       }
-      NnavComponent.compare++
+      else{
+        this.compareservice.updateCompareListbyProductId(this.authservice.getId(),prid).subscribe(res=>{
+          NnavComponent.compare=res.products.length
+        },err=>{
+          console.log(err);
+        })
+      }
     }
     else{
       if(NnavComponent.heart==0){
@@ -283,7 +294,7 @@ addCartWishCompare(prid:string,title:string){
     NnavComponent.changestyle()
   }
   else{
-    console.log('no l');
+    alert('Pleaze Log In or SignUp.')
   }
 }
 

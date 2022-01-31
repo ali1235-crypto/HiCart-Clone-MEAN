@@ -14,8 +14,8 @@ export class CompareserviceService {
   addCompareList(compare:CompareList):Observable<CompareList>{
     return this.http.post<CompareList>('http://localhost:3000/api/comparelists',compare)
   }
-  updateCompareList(iduser:string,ob:{}):Observable<CompareList>{
-    return this.http.put<CompareList>('http://localhost:3000/api/comparelists/update/'+iduser,ob)
+  updateCompareList(iduser:string,ob:{},index:number):Observable<CompareList>{
+    return this.http.put<CompareList>('http://localhost:3000/api/comparelists/update/'+iduser+"?index="+index,ob)
   }
   updateCompareListbyProductId(iduser:string,prid:string):Observable<CompareList>{
     return this.http.put<CompareList>('http://localhost:3000/api/comparelists/'+iduser,{productid:prid})

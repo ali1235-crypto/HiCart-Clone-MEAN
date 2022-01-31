@@ -110,6 +110,22 @@ export class NnavComponent implements OnInit {
       },err=>{
         console.log(err);
       })
+      this.cartservice.getnbofcarts(this.auth.getId()).subscribe(res=>{
+        if(res[0])this.nav.cart=res[0].products.length
+        //this.productswish=res[0].productsid
+        //console.log(this.productswish);
+          this.nav.changestyle()
+      },err=>{
+        console.log(err);
+      })
+      this.compareservice.getnbofcopmares(this.auth.getId()).subscribe(res=>{
+        if(res[0])this.nav.compare=res[0].products.length
+        //this.productswish=res[0].productsid
+        //console.log(this.productswish);
+          this.nav.changestyle()
+      },err=>{
+        console.log(err);
+      })
     }
 
     this.authSocialservice.authState.subscribe((user) => {
@@ -151,13 +167,11 @@ export class NnavComponent implements OnInit {
     }, 70);
   }
   routeProducts(category:string){
-    console.log(category);
+    //console.log(category);
+    this.router.routeReuseStrategy.shouldReuseRoute=()=>false
     this.router.navigate(['/'+category])
   }
-  routeProducts2(category:Category,subcategory:string){
-    console.log(category);
-    this.router.navigate(['/'+category.name+'/'+subcategory])
-  }
+
 
 
   signInWithGoogle(): void {
@@ -228,6 +242,7 @@ export class NnavComponent implements OnInit {
   }
 
   routeToHome(){
+    this.router.routeReuseStrategy.shouldReuseRoute=()=>false
     this.router.navigate([''])
 
   }

@@ -138,6 +138,7 @@ option {
 .products .product-item .product-icons fa-icon {
   margin-left: 10px;
   color: #3c9ad5;
+  cursor: pointer;
 }
 .products .product-item .ratestar fa-icon {
   text-align: center;
@@ -183,7 +184,7 @@ option {
 }
 .field {
   position: absolute;
-  left: 25%;
+  left: 15%;
   right: 25%;
   height: 10px;
   border-radius: 4px;
@@ -196,6 +197,24 @@ option {
   appearance: none;
   background: transparent;
   pointer-events: none;
+}
+
+.pricee span {
+  color: #3c9ad5;
+}
+.btnapply {
+  margin-bottom: 10px;
+  text-align: right;
+}
+.btnapply button {
+  padding: 4px 10px;
+  color: white;
+  border: 2px solid #3c9ad5;
+  background-color: #3c9ad5;
+}
+.btnapply button:hover {
+  color: #3c9ad5;
+  background-color: white;
 }
 input[type="range"]::-webkit-slider-thumb {
   width: 16.8px;

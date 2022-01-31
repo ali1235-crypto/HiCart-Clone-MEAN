@@ -1,9 +1,9 @@
 <section>
   <div class="img-banner">
-    <img />
+    <img [src]="imgbanner"/>
   </div>
   <div class="path">
-    <ul><li><fa-icon [icon]="faHouseDamage"></fa-icon></li><li><a [routerLink]="" style="color: #3c9ad5;">{{category}}</a></li><li>{{subcategory}}</li></ul>
+    <ul><li><fa-icon [icon]="faHouseDamage"></fa-icon></li><li><a [routerLink]="" style="color: #3c9ad5;">{{category}}</a></li><li>{{subcategory}}</li><li *ngIf="subbcategory!=''">{{subbcategory}}</li></ul>
   </div>
   <div class="filter&listeproducts" style="display: flex;">
     <div class="filter">
@@ -22,14 +22,22 @@
         <span>PRICE</span>
         <fa-icon [icon]="changeIcon(1)" (click)="plusbool[1]=!plusbool[1]"></fa-icon>
       </div>
-      <div class="slider">
-        <div class="field"></div>
-        <input type="range" class="range" [value]="range1" min="0" max="100" (input)="range1=a1.value;range()" #a1/>
-        <input type="range" class="range" style="transform: translateY(-24px);" [value]="range2" min="0" max="100" (input)="range2=a.value;range()" #a/>
-      </div>{{range2+";;"+range1}}
+      <div class="pricee" *ngIf="plusbool[1]">
+          <div class="slider" >
+          <div class="field"></div>
+          <input type="range" class="range" [value]="range1" min="1200000" max="100000000" (input)="range1=a1.value;range()" #a1/>
+          <input type="range" class="range" style="transform: translateY(-24px);" [value]="range2" min="1200000" max="100000000" (input)="range2=a.value;range()" #a/>
+        </div>
+        <span style="margin-right: 118px;
+        display: inline-block;
+        width: 62.3px;">{{range2}}</span><span style="display: inline-block;
+        margin-bottom: 20px;">{{range1}}</span>
+        <div class="btnapply"><button>Apply</button></div>
+      </div>
+
       <div class="filter-name">
         <span>BRAND</span>
-        <fa-icon [icon]="changeIcon(1)" (click)="plusbool[2]=!plusbool[2]"></fa-icon>
+        <fa-icon [icon]="changeIcon(2)" (click)="plusbool[2]=!plusbool[2]"></fa-icon>
       </div>
       <ul *ngIf="plusbool[2]">
         <li *ngFor="let filt of filter[1]">
@@ -39,10 +47,22 @@
       </ul>
       <div class="filter-name">
         <span>CAPACITY</span>
-        <fa-icon [icon]="changeIcon(2)" (click)="plusbool[3]=!plusbool[3]"></fa-icon>
+        <fa-icon [icon]="changeIcon(3)" (click)="plusbool[3]=!plusbool[3]"></fa-icon>
       </div>
       <ul *ngIf="plusbool[3]">
         <ng-container *ngFor="let filt of filter[2]">
+          <li *ngIf="filt._id">
+            <input type="checkbox" style="margin-right: 10px;"/>
+            <a [routerLink]="" style="  color: #3c9ad5;">{{filt._id+' ('+filt.total+")"}}</a>
+          </li>
+        </ng-container>
+      </ul>
+      <div class="filter-name">
+        <span>TYPE</span>
+        <fa-icon [icon]="changeIcon(4)" (click)="plusbool[4]=!plusbool[4]"></fa-icon>
+      </div>
+      <ul *ngIf="plusbool[4]">
+        <ng-container *ngFor="let filt of filter[3]">
           <li *ngIf="filt._id">
             <input type="checkbox" style="margin-right: 10px;"/>
             <a [routerLink]="" style="  color: #3c9ad5;">{{filt._id+' ('+filt.total+")"}}</a>
@@ -80,7 +100,7 @@
           <div class="ratestar" style="text-align: center;">
             <fa-icon [icon]="faStar" *ngFor="let i of [1,2,3,4,5]"></fa-icon>
           </div>
-          <h3 (click)="routePproductId(product._id)">{{product.title}}</h3>
+          <h3 (click)="routeProductId(product._id)">{{product.title}}</h3>
           <div class="product-price" style="color: #3c9ad5;text-align: center;">
             <p style="margin-bottom:4px;" *ngIf="product.discount">{{product.price*(100-product.discount)/100 +" LBP"}}</p>
             <p  [style]="styleprice(product.discount)">{{product.price +" LBP"}}</p>

@@ -1,3 +1,7 @@
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { CartserviceService } from './../../services/cartservice.service';
+import { CompareserviceService } from './../../services/compareservice.service';
+import { WishlistserviceService } from 'src/app/services/wishlistservice.service';
 import { CategoryServiceService } from './../../services/category-service.service';
 import { ProductServiceService } from './../../services/product-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +16,10 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/Products';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { NnavComponent } from '../nnav/nnav.component';
+import { WishList } from 'src/app/models/WishList';
+import { CompareList } from 'src/app/models/CompareList';
+import { CartList } from 'src/app/models/CartList';
 
 @Component({
   selector: 'app-listes-products',
@@ -29,7 +37,7 @@ export class ListesProductsComponent implements OnInit {
   faMinus=faMinus
   faArrowUp=faArrowUp
 
-  plusbool=[false,false,false]
+  plusbool=[false,false,false,false]
   cat=true
 
   category=''
@@ -48,10 +56,13 @@ export class ListesProductsComponent implements OnInit {
   list_pages=[1,2,3,4]
   indexleftreight=1
 
-  range1='75'
-  range2='10'
+  range1='80000000'
+  range2='10000000'
 
-  constructor(private Routed:ActivatedRoute,private products:ProductServiceService,private router:Router,private categoryservice:CategoryServiceService) { }
+  imgbanner=""
+
+  constructor(private Routed:ActivatedRoute,private products:ProductServiceService,private router:Router,private categoryservice:CategoryServiceService
+    ,private wishservice:WishlistserviceService,private compareservice:CompareserviceService,private cartservice:CartserviceService,private authservice:AuthServiceService) { }
 
   ngOnInit(): void {
     this.Routed.params.subscribe(res=>{
@@ -67,7 +78,7 @@ export class ListesProductsComponent implements OnInit {
       if(res.subcategory){
         this.subcategory=res.subcategory
         this.categoryservice.getCategories('',this.subcategory).subscribe(res=>{
-
+          this.imgbanner=res[0].imgbanner
         },err=>{
           console.log(err);
           this.router.navigate([{outlets:{primary:'home',nav:'nav'}}])
@@ -79,7 +90,7 @@ export class ListesProductsComponent implements OnInit {
       }
       if(res.subbcategory){
         this.subbcategory=res.subbcategory
-        this.categoryservice.getCategories(this.subbcategory).subscribe(res=>{
+        this.categoryservice.getCategories('',this.subbcategory).subscribe(res=>{
 
         },err=>{
           console.log(err);
@@ -139,11 +150,11 @@ export class ListesProductsComponent implements OnInit {
         this.list_pages.splice(this.list_pages.length-1,1)
         this.list_pages.unshift(this.list_pages[0]-1)
       }
-      if(this.subbcategory){this.getProductsByCategory(this.subcategory,this.page,this.limit,this.fieldname,this.sort)}
+      if(this.subbcategory){this.getProductsByCategory(this.subbcategory,this.page,this.limit,this.fieldname,this.sort)}
       else if(this.subcategory){this.getProductsByCategory(this.subcategory,this.page,this.limit,this.fieldname,this.sort)}
     }
     changeSelect(){
-      if(this.subbcategory){this.getProductsByCategory(this.subcategory,this.page,this.limit,this.fieldname,this.sort)}
+      if(this.subbcategory){this.getProductsByCategory(this.subbcategory,this.page,this.limit,this.fieldname,this.sort)}
       else if(this.subcategory){this.getProductsByCategory(this.subcategory,this.page,this.limit,this.fieldname,this.sort)}
     }
     showingUntil(){
@@ -161,15 +172,14 @@ export class ListesProductsComponent implements OnInit {
     range(){
       const field=document.getElementsByClassName('field') as HTMLCollectionOf<HTMLElement>
       const slider=document.querySelectorAll<HTMLElement>('input[type="range"]::-webkit-slider-thumb')
-      field[0].style.left=this.range2+"%"
-      field[0].style.right=100-parseInt(this.range1)+"%"
+      field[0].style.left=parseInt(this.range2)/1000000+"%"
+      field[0].style.right=100-parseInt(this.range1)/1000000+"%"
       if(slider[0]){
         //if(parseInt(slider[0].style.left)==parseInt(slider[0].style.left)-1){
           console.log('object');
         //}
       }
     }
-
 
 
   styleprice(discount:number){
@@ -182,7 +192,78 @@ export class ListesProductsComponent implements OnInit {
       return 'margin-bottom: 44px;'
     }
   }
-  routePproductId(id:string){
+  routeProductId(id:string){
     this.router.navigate(['/product/'+id])
+  }
+
+  addCartWishCompare(prid:string,title:string,index:number){
+    if(this.authservice.isLoggedIn()){
+      if(title=='cart'){
+        if(NnavComponent.cart==0){
+          var cart=new CartList
+          cart.userid=this.authservice.getId()
+          cart.products=[{productid:prid as any,qty:1,comment:''}]
+          this.cartservice.addCartList(cart).subscribe(res=>{
+            console.log(res);
+            NnavComponent.cart=res.products.length
+          },err=>{
+            console.log(err);
+          })
+        }
+        else{
+          this.cartservice.updateCartList(this.authservice.getId(),prid,index).subscribe(res=>{
+            NnavComponent.cart=res.products.length
+          },err=>{
+            console.log(err);
+          })
+        }
+        NnavComponent.cart++
+      }
+      if(title=='compare'){
+        if(NnavComponent.compare==0){
+          var compare=new CompareList
+          compare.userid=this.authservice.getId()
+          compare.products=[{productid:prid as any,qty:1,comment:''}]
+          this.compareservice.addCompareList(compare).subscribe(res=>{
+            console.log(res);
+            NnavComponent.compare=res.products.length
+          },err=>{
+            console.log(err);
+          })
+        }
+        else{
+          this.compareservice.updateCompareListbyProductId(this.authservice.getId(),prid).subscribe(res=>{
+            NnavComponent.compare=res.products.length
+          },err=>{
+            console.log(err);
+          })
+        }
+      }
+      else{
+        if(NnavComponent.heart==0){
+          var wish=new WishList
+          wish.userid=this.authservice.getId()
+          wish.products=[{productid:prid as any,qty:1,comment:''}]
+          console.log(wish);
+          this.wishservice.addWishList(wish).subscribe(res=>{
+            console.log(res);
+            NnavComponent.heart=res.products.length
+          },err=>{
+            console.log(err);
+          })
+        }
+        else{
+          this.wishservice.updateWishListbyProductId(this.authservice.getId(),prid).subscribe(res=>{
+            NnavComponent.heart=res.products.length
+          },err=>{
+            console.log(err);
+          })
+        }
+      }
+      NnavComponent.changestyle()
+    }
+    else{
+      alert('Pleaze Log In or SignUp.')
+    }
   }
 }

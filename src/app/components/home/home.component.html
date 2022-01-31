@@ -1,10 +1,10 @@
 
 <section class="banners">
   <figure>
-    <img *ngFor="let banner of banners;let i=index" [src]="banner.path" [title]="banner.title" style="height: 183px;width: 1349px;" />
+    <img *ngFor="let banner of banners;let i=index"  [src]="banner.path" [title]="banner.title" style="height: 183px;width: 1349px;"/>
   </figure>
   <div style="width: 100%;" class="banners-routing">
-    <span *ngFor="let sp of [].constructor(lengthimgfigure);let i=index" (click)="animateBannerImg(i)"></span>
+    <span *ngFor="let sp of [].constructor(lengthimgfigure);let i=index" [ngClass]="{'spantrue':i==0}" (click)="animateBannerImg(i)"></span>
   </div>
 </section>
 <section class="offers">
@@ -21,7 +21,7 @@
   </div>
   <div class="parentproducts" style="overflow: hidden;"  >
     <div class="products">
-      <div class="product-item" *ngFor="let product of products[i]">
+      <div class="product-item" *ngFor="let product of productshome[i];let ii=index">
         <div class="product-image">
           <img [src]="product.img" />
         </div>
@@ -34,9 +34,9 @@
           <p  [style]="styleprice(product.discount)">{{product.price +" LBP"}}</p>
         </div>
         <div class="product-icons">
-          <fa-icon [icon]="faShoppingCart" (click)="addCartWishCompare(product._id,'cart')"></fa-icon>
-            <fa-icon [icon]="faHeart" (click)="addCartWishCompare(product._id,'wish')"></fa-icon>
-            <fa-icon [icon]="faBalanceScale" (click)="addCartWishCompare(product._id,'compare')"></fa-icon>
+          <fa-icon [icon]="faShoppingCart" (click)="addCartWishCompare(product._id,'cart',ii)"></fa-icon>
+            <fa-icon [icon]="faHeart" (click)="addCartWishCompare(product._id,'wish',ii)"></fa-icon>
+            <fa-icon [icon]="faBalanceScale" (click)="addCartWishCompare(product._id,'compare',ii)"></fa-icon>
         </div>
       </div>
     </div>

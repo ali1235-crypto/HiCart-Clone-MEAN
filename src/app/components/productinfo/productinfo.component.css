@@ -53,10 +53,11 @@ ul {
   position: relative;
   display: flex;
   transition: left 0.3s;
+  left: 0px;
 }
 #img img {
   height: 100%;
-  width: 100%;
+  width: 460px;
 }
 .list-imgs img {
   width: 60px;

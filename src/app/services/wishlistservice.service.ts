@@ -14,8 +14,8 @@ export class WishlistserviceService {
   addWishList(wish:WishList):Observable<WishList>{
     return this.http.post<WishList>('http://localhost:3000/api/wishlists',wish)
   }
-  updateWishList(iduser:string,ob:{}):Observable<WishList>{
-    return this.http.put<WishList>('http://localhost:3000/api/wishlists/update/'+iduser,ob)
+  updateWishList(iduser:string,ob:{},index:number):Observable<WishList>{
+    return this.http.put<WishList>('http://localhost:3000/api/wishlists/update/'+iduser+"?index="+index,ob)
   }
   updateWishListbyProductId(iduser:string,prid:string):Observable<WishList>{
     return this.http.put<WishList>('http://localhost:3000/api/wishlists/'+iduser,{productid:prid})
@@ -23,4 +23,5 @@ export class WishlistserviceService {
   getnbofhearts(iduser:string):Observable<any>{
     return this.http.get('http://localhost:3000/api/wishlists/'+iduser+"/nbofhearts")
   }
+
 }

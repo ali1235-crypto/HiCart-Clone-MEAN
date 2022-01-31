@@ -45,14 +45,14 @@
   color: gray;
   font-size: 12px;
 }
-.products .qty {
+.products .qtywish {
   width: 70px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 20px;
 }
-.products .qty input {
+.products .qtywish input {
   outline: 0;
   border: 1px solid #f1e4e4;
   width: 40px;
@@ -60,7 +60,7 @@
   padding-left: 15px;
   color: gray;
 }
-.price {
+.pricewish {
   width: 117px;
   padding: 25px 20px;
   font-weight: bold;

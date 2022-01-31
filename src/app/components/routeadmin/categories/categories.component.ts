@@ -70,7 +70,7 @@ export class CategoriesComponent implements OnInit {
     ca.path=this.v.path.value
     ca.parent=this.v.parent.value
     ca.imglogo=this.v.imglogo.value
-    ca.childsId=this.v.childsid.value.split(',')
+    if(this.v.childsid.value!='')ca.childsId=this.v.childsid.value.split(',')
     ca.imgbanner=this.v.imgbanner.value
 
     console.log(ca);

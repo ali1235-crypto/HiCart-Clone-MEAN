@@ -26,7 +26,7 @@
   </div>
   <div class="parentproducts" style="overflow: hidden;"  >
     <div class="products">
-      <div class="product-item" *ngFor="let product of products[i]">
+      <div class="product-item" *ngFor="let product of products[i];let ii=index">
         <div class="product-image">
           <img [src]="product.img" />
         </div>
@@ -39,9 +39,9 @@
           <p  [style]="styleprice(product.discount)">{{product.price +" LBP"}}</p>
         </div>
         <div class="product-icons">
-          <fa-icon [icon]="faShoppingCart" (click)="addCartWishCompare(product._id,'cart')"></fa-icon>
-            <fa-icon [icon]="faHeart" (click)="addCartWishCompare(product._id,'wish')"></fa-icon>
-            <fa-icon [icon]="faBalanceScale" (click)="addCartWishCompare(product._id,'compare')"></fa-icon>
+          <fa-icon [icon]="faShoppingCart" (click)="addCartWishCompare(product._id,'cart',ii)"></fa-icon>
+            <fa-icon [icon]="faHeart" (click)="addCartWishCompare(product._id,'wish',ii)"></fa-icon>
+            <fa-icon [icon]="faBalanceScale" (click)="addCartWishCompare(product._id,'compare',ii)"></fa-icon>
         </div>
       </div>
     </div>

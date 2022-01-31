@@ -23,7 +23,7 @@ export class OfferbannerServiceService {
     return this.http.get<BannerOffer[]>('http://localhost:3000/api/banners/')
   }
   addOffer(bo:BannerOffer):Observable<BannerOffer>{
-    return this.http.post<BannerOffer>('http://localhost:3000/api/banners/',bo)
+    return this.http.post<BannerOffer>('http://localhost:3000/api/offers/',bo)
   }
   editOffer(id:string,bo:BannerOffer):Observable<BannerOffer>{
     return this.http.put<BannerOffer>('http://localhost:3000/api/offers/'+id,bo)

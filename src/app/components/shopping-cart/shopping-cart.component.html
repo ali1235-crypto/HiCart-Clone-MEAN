@@ -14,26 +14,26 @@
       <div style="width: 190px;background-color: #f5f5f5;">SUBTOTAL</div>
       <div style="width: 75px;background-color: #f5f5f5;"></div>
     </div>
-    <div class="columns">
-      <div style="width: 640px;" class="product">
-        <img style="width: 106.45px;height: 106.45px;" src="https://media.hicart.com/catalog/product/cache/1/thumbnail/180x/9df78eab33525d08d6e5fb8d27136e95/n/o/nokia-g10-d-87aefb.jpg"/>
+    <div class="columns" *ngFor="let pr of carts.products;let i=index">
+      <div style="width: 640px;" class="product" >
+        <img style="width: 106.45px;height: 106.45px;" [src]="pr.productid.img"/>
         <div class="product-info">
-          <h2><a>Nokia, G10, 4Gb/64Gb, 6.52 Inch 1 Year Warranty</a></h2>
-          <span style="margin-bottom: 10px;color: #333;">SKU: <span style="color: gray;">Nokia-G10-DUSK</span></span>
-          <span style="color: gray;">By <span style="color:#333">Easy Systems & Information</span></span>
+          <h2><a>{{pr.productid.title}}</a></h2>
+          <span style="margin-bottom: 10px;color: #333;">SKU: <span style="color: gray;">{{pr.productid.specification.productcode}}</span></span>
+          <span style="color: gray;">By <span style="color:#333">{{pr.productid.soldby}}</span></span>
         </div>
       </div>
       <div style="width: 192px;" class="price-subtotal">
-        <span>LBP 2,926,400</span>
+        <span>{{pr.productid.price*pr.productid.discount/100}}</span>
       </div>
-      <div style="width: 200px;padding-top: 22px;" class="qty">
-        <input value="1" type="number" (click)="update=!update" />
-        <button style="width: 90px;" *ngIf="update">Update</button>
+      <div style="width: 200px;padding-top: 22px;" class="qtycart">
+        <input value="1" type="number" (click)="update=!update" #inpqty [value]="pr.qty"/>
+        <button style="width: 90px;" *ngIf="update" (click)="updateCart(inpqty.value,i)">Update</button>
         <a >Configure Product</a>
         <a style="margin-bottom: 15px;">Move to Wishlist</a>
       </div>
       <div style="width: 192px;" class="price-subtotal">
-        <span>LBP 2,926,400</span>
+        <span>{{pr.productid.price*pr.productid.discount/100*pr.qty}}</span>
       </div>
       <div style="width: 75px;position: relative;" class="delete">
         <fa-icon [icon]="faTrash"></fa-icon>
@@ -42,7 +42,7 @@
     <div class="columns" style="padding: 10px 15px;
     border-bottom: 1px solid #f1e4e4;
     border-right: 1px solid #f1e4e4;">
-      <div class="deleteall" title="EMPTY CART">
+      <div class="deleteall" title="EMPTY CART" (click)="delete()">
         <fa-icon [icon]="faTrash"></fa-icon>
         <span>EMPTY CART</span>
       </div>

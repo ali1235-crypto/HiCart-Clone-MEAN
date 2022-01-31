@@ -42,11 +42,7 @@ export class ProductinfoComponent implements OnInit {
   review=false
 
 
-  data = {
-    "VERSION": "2006-10-27.a",
-    "JOBNAME": "EXEC_",
-    "JOBHOST": "Test",
-  };
+
 
   product=new Product()
 
@@ -61,8 +57,9 @@ export class ProductinfoComponent implements OnInit {
         var img0=this.product.img
         var imgs=this.product.imgs.filter((img)=>img!='')
         this.product.imgs=[img0].concat(imgs) as [string]
-        const imagediv=document.querySelector('figure')
-        if(imagediv)imagediv.style.width=this.product.imgs.length*460+"px"
+        const figure=document.querySelector('figure')
+        if(figure){
+          figure.style.width=this.product.imgs.length*460+"px"}
       },err=>{
         console.log(err);
       })
@@ -93,8 +90,8 @@ getTitle(){
   return 'SPECIFICATIONS'
 }
 imageSlider(){
-  const imagediv=document.querySelector('figure')
-  if(imagediv)imagediv.style.left=-100+"%"
+  const figure=document.querySelector('figure')
+  if(figure)figure.style.left=-100+"%"
 }
 
 addOrder(qty:number,pr:Product){

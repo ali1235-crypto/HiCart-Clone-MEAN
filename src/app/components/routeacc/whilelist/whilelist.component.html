@@ -9,7 +9,7 @@
       <div style="width: 147px;"></div>
       <div style="width: 56px;border-right: 0;"></div>
     </div>
-    <div class="products" style="display: flex;" *ngFor="let wish of WishList[0].products">
+    <div class="products" style="display: flex;" *ngFor="let wish of WishList[0].products;let i=index">
       <div>
         <div class="img">
           <img style="width: 97.5px;height: 97.5px;" [src]="wish.productid.img"/>
@@ -18,13 +18,13 @@
         <p><a href="" style="font-size: 16px;color: #3c9ad5;text-transform: capitalize;">{{wish.productid.title}}</a></p>
         <p><span style="color: #333;font-weight: bold;">SKU:</span> {{wish.productid.specification.productcode}}</p>
         <textarea formControlName="comment">{{wish.comment}}</textarea>
-        <button style="width: 138px;" (click)="update()">Update WishleList</button>
+        <button style="width: 138px;" (click)="update(i)">Update WishleList</button>
       </div>
       </div>
-      <div class="qty">
+      <div class="qtywish">
         <input [value]="wish.qty" formControlName="qty"/>
       </div>
-      <div class="price">
+      <div class="pricewish">
         <p style="color: gray;margin-bottom: 20px;text-decoration: line-through;">{{wish.productid.price}} LBP</p>
         <p style="color: #3c9ad5;">{{wish.productid.price*(100-wish.productid.discount)/100}} LBP</p>
       </div>
